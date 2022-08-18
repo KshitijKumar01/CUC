@@ -7,185 +7,213 @@
     android:background="@color/white"
     android:orientation="vertical"
     tools:context=".MainActivity">
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.bottomappbar.BottomAppBar
-            android:id="@+id/bar"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/maincontainer"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="bottom"
-            android:contentInsetStart="0dp"
-            android:contentInsetLeft="0dp"
-            android:contentInsetEnd="0dp"
-            android:contentInsetRight="0dp"
-            android:gravity="center"
-            app:contentInsetEnd="0dp"
-            app:contentInsetLeft="0dp"
-            app:contentInsetRight="0dp"
-            app:contentInsetStart="0dp"
-            app:fabAlignmentMode="center"
-            app:hideOnScroll="true">
 
-            <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_marginBottom="50sp"
+            app:layout_constraintBottom_toTopOf="@+id/coordinatorLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/coordinatorLayout"
+            android:layout_width="match_parent"
+            android:layout_height="75sp"
+            app:layout_constraintVertical_bias="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <com.google.android.material.bottomappbar.BottomAppBar
+                android:id="@+id/bar"
+
+                app:backgroundTint="#FFFFFF"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="50sp"
+                android:layout_gravity="bottom"
+                android:contentInsetStart="0dp"
+                android:contentInsetLeft="0dp"
+                android:contentInsetEnd="0dp"
+                android:contentInsetRight="0dp"
+                android:gravity="center"
+                app:contentInsetEnd="0dp"
+                app:contentInsetLeft="0dp"
+                app:contentInsetRight="0dp"
+                app:contentInsetStart="0dp"
+                app:fabAlignmentMode="center"
+                app:hideOnScroll="true">
 
                 <LinearLayout
-                    android:id="@+id/github"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="3"
-                    android:background="?attr/selectableItemBackground"
-                    android:gravity="center"
-                    android:onClick="onClick"
-                    android:orientation="vertical"
-                    tools:ignore="OnClick">
+                    android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:padding="0dp"
-                        android:background="@mipmap/profile"
-                        app:tint="@color/black" />
-
-                    <TextView
-                        android:id="@+id/tv_users"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                    <LinearLayout
+                        android:id="@+id/profile"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="3"
+                        android:background="?attr/selectableItemBackground"
                         android:gravity="center"
-                        android:text="Profile"
-                        android:textColor="#000"
-                        android:textSize="12sp" />
+                        android:onClick="onClick"
+                        android:orientation="vertical"
+                        tools:ignore="OnClick">
 
-                </LinearLayout>
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@mipmap/profile"
+                            android:padding="0dp"
+                            app:tint="@color/black" />
 
-                <LinearLayout
-                    android:id="@+id/code"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="3"
-                    android:background="?attr/selectableItemBackground"
-                    android:gravity="center"
-                    android:onClick="onClick"
-                    android:orientation="vertical"
-                    tools:ignore="OnClick">
+                        <TextView
+                            android:id="@+id/tv_users"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Profile"
+                            android:textColor="#000"
+                            android:textSize="12sp" />
 
-                    <ImageView
-                        android:layout_width="20sp"
-                        android:layout_height="20sp"
-                        android:background="@mipmap/companion"
-                        android:padding="0dp"
-                        app:tint="@android:color/black" />
+                    </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/tv_products"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                    <LinearLayout
+                        android:id="@+id/companion"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="3"
+                        android:background="?attr/selectableItemBackground"
                         android:gravity="center"
-                        android:text="Companion"
-                        android:textColor="#000"
-                        android:textSize="12sp" />
+                        android:onClick="onClick"
+                        android:orientation="vertical"
+                        tools:ignore="OnClick">
 
-                </LinearLayout>
+                        <ImageView
+                            android:layout_width="20sp"
+                            android:layout_height="20sp"
+                            android:background="@mipmap/companion"
+                            android:padding="0dp"
+                            app:tint="@android:color/black" />
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="3"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tv_products"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Companion"
+                            android:textColor="#000"
+                            android:textSize="12sp" />
 
-                </LinearLayout>
+                    </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/color"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="3"
-                    android:background="?attr/selectableItemBackground"
-                    android:gravity="center"
-                    android:onClick="onClick"
-                    android:orientation="vertical"
-                    tools:ignore="OnClick">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:padding="0dp"
-                        android:background="@mipmap/search"
-
-                        app:tint="@android:color/black" />
-
-                    <TextView
-                        android:id="@+id/tv_transactions"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="3"
                         android:gravity="center"
-                        android:text="Search"
-                        android:textColor="#000"
-                        android:textSize="12sp" />
+                        android:orientation="vertical">
 
-                </LinearLayout>
+                    </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/kit"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="3"
-                    android:background="?attr/selectableItemBackground"
-                    android:gravity="center"
-                    android:onClick="onClick"
-                    android:orientation="vertical"
-                    tools:ignore="OnClick">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:padding="0dp"
-
-
-                        android:background="@mipmap/settings"
-                        app:tint="@android:color/black" />
-
-                    <TextView
-                        android:id="@+id/tv_profile"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                    <LinearLayout
+                        android:id="@+id/search"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="3"
+                        android:background="?attr/selectableItemBackground"
                         android:gravity="center"
-                        android:text="Setting"
-                        android:textColor="#000"
-                        android:textSize="12sp" />
+                        android:onClick="onClick"
+                        android:orientation="vertical"
+                        tools:ignore="OnClick">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@mipmap/search"
+                            android:padding="0dp"
+
+                            app:tint="@android:color/black" />
+
+                        <TextView
+                            android:id="@+id/tv_transactions"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Search"
+                            android:textColor="#000"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/setting"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="3"
+                        android:background="?attr/selectableItemBackground"
+                        android:gravity="center"
+                        android:onClick="onClick"
+                        android:orientation="vertical"
+                        tools:ignore="OnClick">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@mipmap/settings"
+
+
+                            android:padding="0dp"
+                            app:tint="@android:color/black" />
+
+                        <TextView
+                            android:id="@+id/tv_profile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Setting"
+                            android:textColor="#000"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
-            </LinearLayout>
+            </com.google.android.material.bottomappbar.BottomAppBar>
 
-        </com.google.android.material.bottomappbar.BottomAppBar>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:backgroundTint="#FF0000"
+                android:elevation="20dp"
+                android:onClick="onClick"
+                android:tint="@android:color/white"
+                app:fabSize="auto"
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="20dp"
-            android:onClick="onClick"
-            android:background="@color/black"
-            android:backgroundTint="#FF0000"
-            android:tint="@android:color/white"
-            app:fabSize="auto"
+                app:layout_anchor="@id/bar"
+                app:srcCompat="@mipmap/home"
+                tools:ignore="OnClick" />
 
-            app:layout_anchor="@id/bar"
-            app:srcCompat="@mipmap/home"
-            tools:ignore="OnClick" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 
 </LinearLayout>
