@@ -71,139 +71,319 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
+                    <androidx.constraintlayout.widget.ConstraintLayout
 
-                    <LinearLayout
-                        android:id="@+id/profile"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:layout_weight="3"
-                        android:background="?attr/selectableItemBackground"
-                        android:gravity="center"
+                        android:layout_weight="3" android:background="#00FFFFFF"
                         android:onClick="onClick"
-                        android:orientation="vertical"
-                        tools:ignore="OnClick">
+                        tools:ignore="OnClick"
+                        >
 
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:background="@mipmap/profile"
-                            android:padding="0dp"
-                            app:tint="@color/black" />
-
-                        <TextView
-                            android:id="@+id/tv_users"
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/profileitem"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
+
+                            android:backgroundTint="@color/white"
+                            app:cardElevation="0dp"
+                            android:layout_marginTop="5sp"
+                            android:layout_marginLeft="5sp"
+                            android:layout_marginRight="5sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/profile"
+                            app:layout_constraintEnd_toEndOf="@+id/profile"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/profile">
+
+                        </androidx.cardview.widget.CardView>
+
+                        <LinearLayout
+
+                            android:id="@+id/profile"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+
+
+                            android:background="#00FFFFFF"
                             android:gravity="center"
-                            android:text="Profile"
-                            android:textColor="#000"
-                            android:textSize="12sp" />
+                            android:onClick="onClick"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="OnClick">
 
-                    </LinearLayout>
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@mipmap/profile"
+                                android:padding="0dp"
+                                app:tint="@color/black" />
 
-                    <LinearLayout
-                        android:id="@+id/companion"
+                            <TextView
+                                android:id="@+id/tv_users"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Profile"
+                                android:textColor="#000"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_weight="3"
-                        android:background="?attr/selectableItemBackground"
-                        android:gravity="center"
+                        android:background="#00FFFFFF"
                         android:onClick="onClick"
-                        android:orientation="vertical"
-                        tools:ignore="OnClick">
+                        tools:ignore="OnClick"
+                        >
 
-                        <ImageView
-                            android:layout_width="20sp"
-                            android:layout_height="20sp"
-                            android:background="@mipmap/companion"
-                            android:padding="0dp"
-                            app:tint="@android:color/black" />
-
-                        <TextView
-                            android:id="@+id/tv_products"
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/companionitem"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
+
+                            android:backgroundTint="@color/white"
+                            app:cardElevation="0dp"
+                            android:layout_marginRight="5sp"
+                            android:layout_marginTop="5sp"
+
+                            android:layout_marginLeft="5sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/companion"
+                            app:layout_constraintEnd_toEndOf="@+id/companion"
+                            app:layout_constraintStart_toStartOf="@+id/companion"
+                            app:layout_constraintTop_toTopOf="@+id/companion">
+
+                        </androidx.cardview.widget.CardView>
+
+                        <LinearLayout
+
+                            android:id="@+id/companion"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#00FFFFFF"
                             android:gravity="center"
-                            android:text="Companion"
-                            android:textColor="#000"
-                            android:textSize="12sp" />
+                            android:onClick="onClick"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="OnClick">
 
-                    </LinearLayout>
+                            <ImageView
+                                android:layout_width="20sp"
+                                android:layout_height="20sp"
+                                android:background="@mipmap/companion"
+                                android:padding="0dp"
+                                app:tint="@android:color/black" />
 
-                    <LinearLayout
+                            <TextView
+                                android:id="@+id/tv_products"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Companion"
+                                android:textColor="#000"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/homespace"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_weight="3"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/search"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_weight="3"
-                        android:background="?attr/selectableItemBackground"
-                        android:gravity="center"
+                        android:background="#00FFFFFF"
                         android:onClick="onClick"
-                        android:orientation="vertical"
-                        tools:ignore="OnClick">
+                        tools:ignore="OnClick"
+                        >
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/homeitem"
 
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:background="@mipmap/search"
-                            android:padding="0dp"
 
-                            app:tint="@android:color/black" />
 
-                        <TextView
-                            android:id="@+id/tv_transactions"
+                            android:backgroundTint="#00FFFFFF"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
+
+                            app:cardElevation="0dp"
+
+                            android:layout_marginLeft="5sp"
+                            android:layout_marginRight="5sp"
+                           >
+
+                        </androidx.cardview.widget.CardView>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:backgroundTint="#00FFFFFF"
+                            android:layout_weight="3"
                             android:gravity="center"
-                            android:text="Search"
-                            android:textColor="#000"
-                            android:textSize="12sp" />
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
 
-                    </LinearLayout>
+                        </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/setting"
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_weight="3"
-                        android:background="?attr/selectableItemBackground"
-                        android:gravity="center"
+                        android:background="#00FFFFFF"
                         android:onClick="onClick"
-                        android:orientation="vertical"
-                        tools:ignore="OnClick">
+                        tools:ignore="OnClick"
+                        >
 
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:background="@mipmap/settings"
-
-
-                            android:padding="0dp"
-                            app:tint="@android:color/black" />
-
-                        <TextView
-                            android:id="@+id/tv_profile"
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/searchitem"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Setting"
-                            android:textColor="#000"
-                            android:textSize="12sp" />
+                            android:layout_height="match_parent"
+                            android:backgroundTint="@color/white"
 
-                    </LinearLayout>
+                            app:cardElevation="0dp"
+                            android:layout_marginRight="5sp"
+                            android:layout_marginTop="5sp"
+                            android:layout_marginLeft="5sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/search"
+                            app:layout_constraintEnd_toEndOf="@+id/search"
+                            app:layout_constraintStart_toStartOf="@+id/search"
+                            app:layout_constraintTop_toTopOf="@+id/search">
+
+                        </androidx.cardview.widget.CardView>
+
+                        <LinearLayout
+
+                            android:id="@+id/search"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_weight="3"
+                            android:background="#00FFFFFF"
+                            android:gravity="center"
+                            android:onClick="onClick"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="OnClick">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@mipmap/search"
+                                android:padding="0dp"
+
+                                app:tint="@android:color/black" />
+
+                            <TextView
+                                android:id="@+id/tv_transactions"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Search"
+                                android:textColor="#000"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="3"
+                        android:background="#00FFFFFF"
+                        android:onClick="onClick"
+                        tools:ignore="OnClick"
+                        >
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/settingitem"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:backgroundTint="@color/white"
+
+                            app:cardElevation="0dp"
+                            android:layout_marginRight="5sp"
+                            android:layout_marginTop="5sp"
+                            android:layout_marginLeft="5sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/setting"
+                            app:layout_constraintEnd_toEndOf="@+id/setting"
+                            app:layout_constraintStart_toStartOf="@+id/setting"
+                            app:layout_constraintTop_toTopOf="@+id/setting">
+
+                        </androidx.cardview.widget.CardView>
+
+                        <LinearLayout
+
+                            android:id="@+id/setting"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_weight="3"
+                            android:background="#00FFFFFF"
+                            android:gravity="center"
+                            android:onClick="onClick"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="OnClick">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@mipmap/settings"
+
+
+                                android:padding="0dp"
+                                app:tint="@android:color/black" />
+
+                            <TextView
+                                android:id="@+id/tv_profile"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Setting"
+                                android:textColor="#000"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+
+
+
 
                 </LinearLayout>
 

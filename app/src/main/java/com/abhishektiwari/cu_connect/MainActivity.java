@@ -1,6 +1,8 @@
 package com.abhishektiwari.cu_connect;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.core.widget.ImageViewCompat;
 import androidx.fragment.app.FragmentManager;
 
@@ -14,6 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
+    CardView profilebg,companionbg,homebg,searchbg,settingbg;
 
 
     @Override
@@ -21,6 +24,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         System.out.println("Hello world");
+
+        profilebg=findViewById(R.id.profileitem);
+        searchbg=findViewById(R.id.searchitem);
+        settingbg=findViewById(R.id.settingitem);
+        homebg=findViewById(R.id.homeitem);
+        companionbg=findViewById(R.id.companionitem);
+
+        profilebg.setBackgroundColor(ContextCompat.getColor(this, R.color.black));
+
+
 
 
         FloatingActionButton floatingActionButton=(FloatingActionButton)findViewById(R.id.home);
@@ -51,10 +64,12 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
             case R.id.search:
+
                 getSupportFragmentManager().beginTransaction().replace(R.id.maincontainer,new Search()).commit();
 
                 break;
             case R.id.setting:
+
                 getSupportFragmentManager().beginTransaction().replace(R.id.maincontainer,new Setting()).commit();
 
                 break;
