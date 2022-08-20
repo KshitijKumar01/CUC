@@ -80,7 +80,7 @@
             <androidx.coordinatorlayout.widget.CoordinatorLayout
                 android:id="@+id/coordinatorLayout"
                 android:layout_width="match_parent"
-                android:layout_height="75sp"
+                android:layout_height="79sp"
                 android:foregroundGravity="bottom"
                 app:layout_constraintVertical_bias="1"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -484,11 +484,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
+                    android:tint="@color/redmain"
 
                     android:backgroundTint="@color/redmain"
                     android:elevation="20dp"
                     android:onClick="onClick"
-                    app:maxImageSize="30sp"
+                    app:maxImageSize="25sp"
 
                     android:src="@mipmap/home"
                     app:fabSize="auto"

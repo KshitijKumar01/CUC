@@ -143,16 +143,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void HomenotClicked() {
+        floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.redmain)));
         ImageViewCompat.setImageTintList(
                 floatingActionButton,
-                ColorStateList.valueOf(getResources().getColor(R.color.silver))
+                ColorStateList.valueOf(getResources().getColor(R.color.white))
         );
     }
 
     private void HomeClicked() {
+
+        floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.redmain)));
         ImageViewCompat.setImageTintList(
                 floatingActionButton,
-                ColorStateList.valueOf(getResources().getColor(R.color.black))
+                ColorStateList.valueOf(getResources().getColor(R.color.silver))
         );
     }
 
