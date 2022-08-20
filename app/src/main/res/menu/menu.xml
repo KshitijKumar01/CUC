@@ -4,22 +4,23 @@
     tools:showIn="navigation_view">
     <item
         android:id="@+id/privacy_policy"
-        android:title="PrivacyP olicy"
-        android:icon="@mipmap/profilepicture">
+        android:title="Privacy Policy"
+        android:icon="@mipmap/privacy">
     </item>
     <item
         android:id="@+id/connect_to_us"
         android:title="Connect to us"
-        android:icon="@mipmap/profilepicture">
+        android:icon="@mipmap/connecttous">
     </item>
     <item
         android:id="@+id/our_more_apps"
         android:title="Our More apps"
-        android:icon="@mipmap/profilepicture">
+        android:icon="@mipmap/moreapps">
     </item>
     <item
         android:id="@+id/about_app"
         android:title="About App"
-        android:icon="@mipmap/profilepicture">
+
+        android:icon="@mipmap/aboutapp">
     </item>
 </menu>
