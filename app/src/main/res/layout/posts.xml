@@ -1,0 +1,141 @@
+<androidx.cardview.widget.CardView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="10sp"
+    android:layout_marginTop="5sp"
+    android:layout_marginRight="10sp"
+    android:layout_marginBottom="5sp"
+    android:visibility="visible"
+    app:cardCornerRadius="2dp"
+    app:cardElevation="2dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10sp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="50sp"
+                app:cardCornerRadius="40sp"
+                android:layout_height="50sp">
+                <ImageView
+                    android:layout_width="50sp"
+                    android:layout_height="50sp"
+                    android:src="@mipmap/logo" >
+
+                </ImageView>
+            </androidx.cardview.widget.CardView>
+
+
+
+            <View
+                android:layout_width="10sp"
+                android:layout_height="0dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="Bsilico Eat"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5sp"
+                    android:gravity="center_vertical"
+                    android:text="June 1, 2015"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    android:textColor="@color/gray" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:layout_marginBottom="10sp"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam efficitur ipsum in placerat molestie.  Fusce quis mauris a enim sollicitudin"
+            android:textColor="@color/gray" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200sp"
+            android:background="@color/white"
+            android:scaleType="fitXY"
+            android:src="@mipmap/navheader"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:orientation="horizontal">
+
+            <ImageButton
+
+                android:layout_width="30sp"
+                android:layout_marginLeft="20sp"
+                android:layout_height="30sp"
+                android:layout_gravity="center"
+                android:background="@mipmap/aboutapp"
+               />
+
+            <ImageButton
+                android:layout_gravity="center"
+                android:layout_width="30sp"
+                android:layout_marginLeft="20sp"
+                android:layout_height="30sp"
+                android:background="@mipmap/moreapps"
+
+
+
+                />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:layout_gravity="center"
+                android:background="@mipmap/connecttous"
+
+                app:tint="@color/gray" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_marginRight="20sp"
+                android:gravity="center_vertical"
+                android:text="12"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/gray" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray" />
+
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
