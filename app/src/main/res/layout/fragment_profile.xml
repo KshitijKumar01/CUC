@@ -339,6 +339,12 @@
                 android:layout_margin="1sp"
                 app:cardBackgroundColor="@color/silver"
                 app:cardCornerRadius="10sp">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:id="@+id/mypostsrecycler"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
 
 
             </androidx.cardview.widget.CardView>
