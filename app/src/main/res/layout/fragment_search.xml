@@ -52,7 +52,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
-                    app:srcCompat="@mipmap/profile"
+                    app:srcCompat="@mipmap/cancel"
                     app:tint="#ffffff" />
 
                 <RelativeLayout
@@ -73,34 +73,13 @@
                         android:layout_height="22dp"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
-                        app:srcCompat="@mipmap/settings"
+                        app:srcCompat="@mipmap/cancel"
                         app:tint="#ffffff" />
 
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/item_mic_click_parent"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="10dp"
-                    android:layout_toStartOf="@+id/item_menu_click_parent"
-                    android:background="?selectableItemBackgroundBorderless"
-                    android:clickable="true"
-                    android:focusable="true">
-
-                    <ImageView
-                        android:id="@+id/item_mic_icon"
-                        android:layout_width="22dp"
-                        android:layout_height="22dp"
-                        android:layout_centerVertical="true"
-                        app:srcCompat="@mipmap/home"
-                        app:tint="#ffffff" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/item_menu_click_parent"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_alignParentEnd="true"
@@ -111,19 +90,36 @@
                     android:focusable="true">
 
                     <ImageView
-                        android:id="@+id/item_menu_icon"
+                        android:id="@+id/search"
                         android:layout_width="22dp"
                         android:layout_height="22dp"
-                        android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
-                        app:srcCompat="@mipmap/companion"
+                        app:srcCompat="@mipmap/search"
                         app:tint="#ffffff" />
 
                 </RelativeLayout>
+
+
 
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2sp"
+        android:layout_marginTop="58sp"
+        android:backgroundTint="@color/black"
+        android:background="@color/black"
+        >
+
+    </View>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_marginTop="60sp"
+        android:id="@+id/searchrecycler"
+        android:layout_height="match_parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
 </FrameLayout>

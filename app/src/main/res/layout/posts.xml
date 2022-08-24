@@ -76,10 +76,12 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="200sp"
+            android:layout_height="wrap_content"
             android:background="@color/white"
-            android:scaleType="fitXY"
-            android:src="@mipmap/navheader"/>
+            android:layout_gravity="center"
+            android:foregroundGravity="center"
+            android:scaleType="fitStart"
+            android:src="@mipmap/connecttous"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -92,7 +94,7 @@
                 android:layout_marginLeft="20sp"
                 android:layout_height="30sp"
                 android:layout_gravity="center"
-                android:background="@mipmap/aboutapp"
+                android:background="@mipmap/notfollowing"
                />
 
             <ImageButton
@@ -100,7 +102,7 @@
                 android:layout_width="30sp"
                 android:layout_marginLeft="20sp"
                 android:layout_height="30sp"
-                android:background="@mipmap/moreapps"
+                android:background="@mipmap/save"
 
 
 
@@ -115,7 +117,7 @@
                 android:layout_width="30sp"
                 android:layout_height="30sp"
                 android:layout_gravity="center"
-                android:background="@mipmap/connecttous"
+                android:background="@mipmap/like"
 
                 app:tint="@color/gray" />
 
@@ -123,6 +125,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_marginRight="20sp"
+                android:layout_marginLeft="5sp"
                 android:gravity="center_vertical"
                 android:text="12"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
