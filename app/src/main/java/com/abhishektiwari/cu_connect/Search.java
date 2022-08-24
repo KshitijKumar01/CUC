@@ -3,6 +3,8 @@ package com.abhishektiwari.cu_connect;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,7 +17,8 @@ import android.widget.Toast;
 
 
 public class Search extends Fragment {
-
+    RecyclerView recyclerView;
+    search_result_recycler searchadapter;
 
     public Search() {
         // Required empty public constructor
@@ -38,7 +41,14 @@ public class Search extends Fragment {
         EditText item_search_input = view.findViewById(R.id.item_search_input);
         RelativeLayout item_clear_click_parent = view.findViewById(R.id.item_clear_click_parent);
         RelativeLayout item_mic_click_parent = view.findViewById(R.id.item_mic_click_parent);
-        RelativeLayout item_menu_click_parent = view.findViewById(R.id.item_menu_click_parent);
+
+        recyclerView=view.findViewById(R.id.searchrecycler);
+        searchadapter=new search_result_recycler(getContext());
+        recyclerView.setAdapter(searchadapter);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
 
         item_search_input.addTextChangedListener(new TextWatcher() {
             @Override
@@ -60,12 +70,14 @@ public class Search extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
 
+
             }
         });
 
-        item_mic_click_parent.setOnClickListener(v -> Toast.makeText(getContext(), "Mic clicked", Toast.LENGTH_SHORT).show());
-        item_menu_click_parent.setOnClickListener(v -> Toast.makeText(getContext(), "Menu clicked", Toast.LENGTH_SHORT).show());
+        item_mic_click_parent.setOnClickListener(v -> Toast.makeText(getContext(), item_search_input.getText().toString(), Toast.LENGTH_SHORT).show());
+
         item_clear_click_parent.setOnClickListener(v -> item_search_input.getText().clear());
+
 
         return view;
     }

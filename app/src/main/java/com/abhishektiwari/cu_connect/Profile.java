@@ -34,7 +34,7 @@ public class Profile extends Fragment {
 
         posts_recycler=view.findViewById(R.id.mypostsrecycler);
         posts_recycler.setHasFixedSize(true);
-        posts_recycler.setLayoutManager(new GridLayoutManager(getContext(),3));
+        posts_recycler.setLayoutManager(new GridLayoutManager(getContext(),2));
 
         posts_adapter= new profile_myposts_recycler(getContext());
         posts_recycler.setAdapter(posts_adapter);
