@@ -33,11 +33,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_marginTop="10sp"
-                android:layout_marginRight="5sp"
-                android:layout_marginBottom="10sp"
+                android:layout_marginTop="0sp"
+                android:layout_marginRight="0sp"
+                android:layout_marginBottom="0sp"
                 android:backgroundTint="#C8001D2C"
-                app:cardCornerRadius="10sp">
+                app:cardCornerRadius="0sp">
                 <ScrollView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -224,7 +224,7 @@
                                 app:layout_constraintWidth_percent="0.7"
 
                                 android:layout_gravity="center"
-                                android:backgroundTint="@color/gray"
+                                android:backgroundTint="@color/redmain"
                                 android:foregroundGravity="center"
 
                                 app:cardCornerRadius="20sp"
