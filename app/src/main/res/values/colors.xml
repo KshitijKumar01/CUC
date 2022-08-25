@@ -13,5 +13,6 @@
     <color name="silver">#dcdcdc</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="gold">#f0e68c</color>
-    <color name="grey">#FFFFFF</color>
+    <color name="grey">#36454F</color>
+    <color name="green">#00FF6A</color>
 </resources>
