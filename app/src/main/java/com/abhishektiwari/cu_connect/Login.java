@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class LoginFragment extends Fragment {
+public class Login extends Fragment {
 
     Button btnRegister;
     static int active;

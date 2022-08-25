@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".SignInFragment">
+    tools:context=".Sign_up">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/white"
+        android:background="@mipmap/pagebg"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -32,9 +32,10 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_marginTop="10sp"
-                android:layout_marginRight="10sp"
+                app:cardElevation="0dp"
+                android:layout_marginRight="5sp"
                 android:layout_marginBottom="10sp"
-                android:backgroundTint="#CDFF0000"
+                android:backgroundTint="#6BFF0000"
                 app:cardCornerRadius="10sp">
                 <ScrollView
                     android:layout_width="match_parent"
@@ -66,7 +67,7 @@
                             android:layout_width="200sp"
                             android:textAlignment="center"
                             android:layout_gravity="center"
-                            app:cardCornerRadius="90sp"
+                            app:cardCornerRadius="190sp"
                             android:layout_marginTop="20sp"
                             android:layout_height="200sp">
                             <ImageView
@@ -78,9 +79,9 @@
 
                         </androidx.cardview.widget.CardView>
                         <androidx.cardview.widget.CardView
-                            app:cardCornerRadius="20sp"
+                            app:cardCornerRadius="0sp"
+                            android:layout_marginRight="12sp"
                             android:layout_width="match_parent"
-                            android:layout_marginRight="20sp"
                             android:layout_marginTop="50sp"
                             android:layout_height="40sp"
                             android:foregroundGravity="center"
@@ -110,8 +111,8 @@
 
                                 <ImageView
                                     android:id="@+id/imageView4"
-                                    android:layout_width="30sp"
-                                    android:layout_height="30sp"
+                                    android:layout_width="20sp"
+                                    android:layout_height="20sp"
                                     android:src="@mipmap/uid"
                                     android:layout_marginRight="10sp"
                                     app:layout_constraintBottom_toBottomOf="parent"
@@ -125,8 +126,8 @@
                         </androidx.cardview.widget.CardView>
                         <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
-                            app:cardCornerRadius="20sp"
-                            android:layout_marginRight="20sp"
+                            app:cardCornerRadius="0sp"
+                            android:layout_marginRight="12sp"
                             android:layout_marginTop="20sp"
                             android:layout_height="40sp"
                             android:foregroundGravity="center"
@@ -134,10 +135,11 @@
 
                             android:backgroundTint="@color/white"
                             >
+
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:orientation="horizontal"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
 
                                 <EditText
                                     android:layout_width="0dp"
@@ -156,21 +158,22 @@
 
                                 <ImageView
                                     android:id="@+id/imageView6"
-                                    android:layout_width="30sp"
-                                    android:layout_height="30sp"
-                                    android:src="@mipmap/eyeclosed"
+                                    android:layout_width="20sp"
+                                    android:layout_height="20sp"
                                     android:layout_marginRight="10sp"
+                                    android:src="@mipmap/eyeclosed"
                                     app:layout_constraintBottom_toBottomOf="parent"
 
                                     app:layout_constraintEnd_toStartOf="@+id/imageView5"
                                     app:layout_constraintTop_toTopOf="parent">
 
                                 </ImageView>
+
                                 <ImageView
                                     android:id="@+id/imageView5"
-                                    android:layout_width="30sp"
+                                    android:layout_width="20sp"
+                                    android:layout_height="20sp"
                                     android:layout_marginRight="10sp"
-                                    android:layout_height="30sp"
                                     android:src="@mipmap/password"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
@@ -182,21 +185,23 @@
 
 
                         </androidx.cardview.widget.CardView>
+
                         <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
-                            app:cardCornerRadius="20sp"
-                            android:layout_marginRight="20sp"
-                            android:layout_marginTop="20sp"
-                            android:layout_height="40sp"
-                            android:foregroundGravity="center"
+                            android:layout_height="40dp"
                             android:layout_gravity="center"
+                            android:layout_marginTop="20sp"
 
+                            android:layout_marginRight="12sp"
                             android:backgroundTint="@color/white"
-                            >
+                            android:foregroundGravity="center"
+
+                            app:cardCornerRadius="0sp">
+
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:orientation="horizontal"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
 
                                 <EditText
                                     android:layout_width="0dp"
@@ -215,22 +220,23 @@
 
                                 <ImageView
                                     android:id="@+id/imageView7"
-                                    android:layout_width="30sp"
-                                    android:layout_height="30sp"
-                                    android:src="@mipmap/eyeclosed"
+                                    android:layout_width="20sp"
+                                    android:layout_height="20sp"
                                     android:layout_marginRight="10sp"
+                                    android:src="@mipmap/eyeclosed"
                                     app:layout_constraintBottom_toBottomOf="parent"
 
                                     app:layout_constraintEnd_toStartOf="@+id/imageView8"
                                     app:layout_constraintTop_toTopOf="parent">
 
                                 </ImageView>
+
                                 <ImageView
                                     android:id="@+id/imageView8"
-                                    android:layout_width="30sp"
+                                    android:layout_width="20sp"
+                                    android:layout_height="20sp"
                                     android:layout_marginRight="10sp"
-                                    android:layout_height="30sp"
-                                    android:src="@mipmap/password"
+                                    android:src="@mipmap/password_again"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintTop_toTopOf="parent">

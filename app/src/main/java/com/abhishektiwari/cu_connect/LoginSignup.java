@@ -2,9 +2,7 @@ package com.abhishektiwari.cu_connect;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.res.ColorStateList;
 import android.os.Bundle;
@@ -27,26 +25,30 @@ public class LoginSignup extends AppCompatActivity{
         two=findViewById(R.id.two);
         three=findViewById(R.id.three);
         four=findViewById(R.id.four);
-        loginbutton.setBackgroundTintList(  ColorStateList.valueOf(getResources().getColor(R.color.silver)));
+        FragmentManager fragmentManager=getSupportFragmentManager();
+        fragmentManager.beginTransaction().add(R.id.logsincon,new Login()).commit();
+        loginbutton.setBackgroundTintList(  ColorStateList.valueOf(getResources().getColor(R.color.green)));
 
 
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loginbutton.setBackgroundTintList(  ColorStateList.valueOf(getResources().getColor(R.color.redmain)));
+                loginbutton.setBackgroundTintList(  ColorStateList.valueOf(getResources().getColor(R.color.green)));
                 signupbutton.setBackgroundTintList(  ColorStateList.valueOf(getResources().getColor(R.color.white)));
+                fragmentManager.beginTransaction().replace(R.id.logsincon,new Login()).commit();
+
             }
         });
-        loginbutton.setOnClickListener(new View.OnClickListener() {
+        signupbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loginbutton.setBackgroundTintList(  ColorStateList.valueOf(getResources().getColor(R.color.white)));
-                signupbutton.setBackgroundTintList(  ColorStateList.valueOf(getResources().getColor(R.color.redmain)));
+                signupbutton.setBackgroundTintList(  ColorStateList.valueOf(getResources().getColor(R.color.green)));
+                fragmentManager.beginTransaction().replace(R.id.logsincon,new Sign_up()).commit();
+
             }
         });
 
-        FragmentManager fragmentManager=getSupportFragmentManager();
-        fragmentManager.beginTransaction().add(R.id.logsincon,new LoginFragment()).commit();
 
     }
 
