@@ -13,5 +13,7 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
+
 rootProject.name = "Cu_Connect"
 include ':app'
