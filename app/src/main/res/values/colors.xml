@@ -15,4 +15,6 @@
     <color name="gold">#f0e68c</color>
     <color name="grey">#36454F</color>
     <color name="green">#00FF6A</color>
+    <color name="red">#ff0000</color>
+    <color name="yellow">#FDBF00</color>
 </resources>
