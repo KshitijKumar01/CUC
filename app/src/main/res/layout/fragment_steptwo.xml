@@ -176,49 +176,14 @@
 
                         </androidx.cardview.widget.CardView>
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="40sp"
-                            android:layout_marginRight="0sp"
-                            android:layout_marginTop="30sp"
 
-                            >
-
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="0dp"
-
-                                android:layout_height="match_parent"
-                                app:layout_constraintWidth_percent="0.8"
-
-                                android:layout_gravity="center"
-                                android:backgroundTint="@color/redmain"
-                                android:foregroundGravity="center"
-
-                                app:cardCornerRadius="20sp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent">
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:text="VERIFY NUMBER"
-                                    android:textColor="@color/white"
-                                    android:textStyle="bold"
-                                    android:textSize="20sp"
-                                    android:gravity="center"
-
-                                    android:layout_height="match_parent">
-
-                                </TextView>
-
-                            </androidx.cardview.widget.CardView>
-                        </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.cardview.widget.CardView
+                            android:id="@+id/otpbox"
                             android:layout_width="match_parent"
                             app:cardCornerRadius="5sp"
                             android:layout_marginRight="12sp"
-                            android:layout_marginTop="60sp"
+                            android:layout_marginTop="40sp"
                             android:layout_height="40sp"
                             android:foregroundGravity="center"
                             android:layout_gravity="center"
@@ -400,6 +365,45 @@
 
 
                         </androidx.cardview.widget.CardView>
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40sp"
+                            android:layout_marginRight="0sp"
+                            android:layout_marginTop="110sp"
+
+                            >
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/verifynumber"
+
+                                android:layout_width="0dp"
+
+                                android:layout_height="match_parent"
+                                app:layout_constraintWidth_percent="0.8"
+
+                                android:layout_gravity="center"
+                                android:backgroundTint="@color/redmain"
+                                android:foregroundGravity="center"
+
+                                app:cardCornerRadius="20sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:text="VERIFY NUMBER"
+                                    android:textColor="@color/white"
+                                    android:textStyle="bold"
+                                    android:textSize="20sp"
+                                    android:gravity="center"
+
+                                    android:layout_height="match_parent">
+
+                                </TextView>
+
+                            </androidx.cardview.widget.CardView>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
                         <TextView
@@ -410,7 +414,7 @@
                             android:layout_marginRight="10sp"
                             android:textSize="13sp"
                             android:textStyle="bold"
-                            android:layout_marginTop="90sp"
+                            android:layout_marginTop="20sp"
 
                             android:layout_height="wrap_content">
 
