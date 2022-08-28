@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Sign_up">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@mipmap/pagebg"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintHorizontal_bias="1"
+            android:layout_height="match_parent"
+            app:layout_constraintWidth_percent="0.85"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="0sp"
+                app:cardElevation="0dp"
+                android:layout_marginRight="0sp"
+                android:layout_marginBottom="0sp"
+                android:backgroundTint="#C8001D2C"
+                app:cardCornerRadius="0sp">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/next"
+                        android:layout_width="60sp"
+
+                        android:layout_height="60sp"
+                        android:layout_gravity="right"
+                        android:backgroundTint="@color/redmain"
+
+                        android:foregroundGravity="right"
+                        app:cardCornerRadius="90sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias=".87"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="1">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="2sp"
+                            android:src="@mipmap/nextbtn">
+
+                        </ImageView>
+
+                    </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <ScrollView
+                    android:layout_marginBottom="85sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:orientation="vertical"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="150sp"
+                            android:textAlignment="center"
+                            android:layout_gravity="center"
+                            app:cardCornerRadius="10sp"
+                            android:backgroundTint="@color/yellow"
+
+                            android:layout_marginTop="30sp"
+                            app:cardElevation="0dp"
+                            android:layout_height="150sp">
+                            <ImageView
+                                android:layout_margin="4sp"
+                                android:layout_width="match_parent"
+                                android:src="@mipmap/three"
+                                android:layout_height="match_parent">
+
+                            </ImageView>
+
+                        </androidx.cardview.widget.CardView>
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_marginRight="5sp"
+                            android:layout_marginLeft="5sp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="50sp"
+                            android:layout_height="40sp"
+                            android:foregroundGravity="center"
+                            android:layout_gravity="center"
+                            >
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/cardView2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="40sp"
+                                    android:layout_gravity="center"
+                                    android:backgroundTint="@color/white"
+                                    android:foregroundGravity="center"
+                                    app:cardCornerRadius="5sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintVertical_bias="1"
+                                    app:layout_constraintWidth_percent="0.45">
+                                    <Spinner
+                                        android:id="@+id/branch"
+                                        android:layout_width="match_parent"
+                                        android:tooltipText="BRANCH"
+                                        android:layout_height="match_parent">
+
+                                    </Spinner>
+
+
+                                </androidx.cardview.widget.CardView>
+
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="0dp"
+                                    android:layout_height="40sp"
+                                    android:layout_gravity="center"
+
+                                    android:backgroundTint="@color/white"
+                                    android:foregroundGravity="center"
+                                    app:cardCornerRadius="5sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="1"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintVertical_bias="1"
+                                    app:layout_constraintWidth_percent="0.45">
+
+                                    <Spinner
+                                        android:id="@+id/semester"
+                                        android:layout_width="match_parent"
+                                        android:tooltipText="SEMESTER"
+                                        android:layout_height="match_parent">
+
+                                    </Spinner>
+
+
+                                </androidx.cardview.widget.CardView>
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_marginRight="5sp"
+                            android:layout_marginLeft="5sp"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="50sp"
+                            android:layout_height="40sp"
+                            android:foregroundGravity="center"
+                            android:layout_gravity="center"
+                            >
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+
+
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="0dp"
+                                    android:layout_height="40sp"
+                                    android:layout_gravity="center"
+
+                                    android:backgroundTint="@color/white"
+                                    android:foregroundGravity="center"
+                                    app:cardCornerRadius="5sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="1"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintVertical_bias="1"
+                                    app:layout_constraintWidth_percent="01">
+
+                                    <Spinner
+                                        android:layout_width="match_parent"
+                                        android:tooltipText="SEMESTER"
+                                        android:id="@+id/intrests"
+                                        android:layout_height="match_parent">
+
+                                    </Spinner>
+
+
+                                </androidx.cardview.widget.CardView>
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:textColor="@color/yellow"
+                            android:text="Please Enter the correct UID a verification email will be sent to you on that E-mail -ID which is asociated with your UID"
+                            android:layout_marginLeft="15sp"
+                            android:layout_marginRight="10sp"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="90sp"
+
+                            android:layout_height="wrap_content">
+
+                        </TextView>
+
+
+
+
+                    </LinearLayout>
+                </ScrollView>
+
+
+
+            </androidx.cardview.widget.CardView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

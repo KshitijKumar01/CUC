@@ -26,6 +26,9 @@ public class Sign_up extends Fragment {
                 getContext().startActivity(intent);
             }
         });
+
+
+
         return view;
     }
 }
