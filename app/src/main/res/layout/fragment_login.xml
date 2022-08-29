@@ -66,8 +66,6 @@
                         </TextView>
                         <androidx.cardview.widget.CardView
                             android:layout_width="150sp"
-                            android:backgroundTint="#00FDBF00"
-                            app:cardElevation="0dp"
                             android:textAlignment="center"
                             android:layout_gravity="center"
                             app:cardCornerRadius="190sp"
@@ -75,7 +73,7 @@
                             android:layout_height="150sp">
                             <ImageView
                                 android:layout_width="match_parent"
-                                android:src="@mipmap/nonbglogo"
+                                android:src="@mipmap/logobg"
                                 android:layout_height="match_parent">
 
                             </ImageView>
@@ -85,10 +83,9 @@
                             android:background="@drawable/cardbg"
 
 
-                            app:cardCornerRadius="05sp"
                             android:layout_width="match_parent"
                             android:layout_marginRight="12sp"
-                            android:layout_marginTop="50sp"
+                            android:layout_marginTop="40sp"
                             android:layout_height="40sp"
                             android:foregroundGravity="center"
                             android:layout_gravity="center"
@@ -131,9 +128,8 @@
 
                         </androidx.cardview.widget.CardView>
                         <androidx.cardview.widget.CardView
-
                             android:layout_width="match_parent"
-                            app:cardCornerRadius="05sp"
+                            app:cardCornerRadius="0sp"
                             android:layout_marginRight="12sp"
                             android:layout_marginTop="20sp"
                             android:layout_height="40sp"
