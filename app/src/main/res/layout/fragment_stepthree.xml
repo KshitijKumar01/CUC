@@ -133,7 +133,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="40sp"
                                     android:layout_gravity="center"
-                                    android:backgroundTint="@color/white"
+                                    android:backgroundTint="@color/yellow"
                                     android:foregroundGravity="center"
                                     app:cardCornerRadius="5sp"
                                     app:layout_constraintBottom_toBottomOf="parent"
@@ -142,14 +142,32 @@
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent"
                                     app:layout_constraintVertical_bias="1"
-                                    app:layout_constraintWidth_percent="0.45">
-                                    <Spinner
-                                        android:id="@+id/branch"
-                                        android:layout_width="match_parent"
-                                        android:tooltipText="BRANCH"
-                                        android:layout_height="match_parent">
 
-                                    </Spinner>
+                                    app:layout_constraintWidth_percent="0.45">
+                                    <androidx.cardview.widget.CardView
+                                        app:cardCornerRadius="5sp"
+                                        android:layout_margin="1sp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent">
+                                        <TextView
+                                            android:singleLine="true"
+                                            android:layout_margin="0sp"
+                                            android:hint="Branch"
+                                            android:layout_gravity="center"
+                                            android:gravity="center"
+                                            android:textColor="@color/black"
+                                            android:textColorHint="@color/black"
+                                            android:textSize="20sp"
+                                            android:background="@color/white"
+                                            android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                                            android:id="@+id/branch"
+                                            android:layout_width="match_parent"
+                                            android:tooltipText="BRANCH"
+                                            android:layout_height="match_parent">
+
+                                        </TextView>
+                                    </androidx.cardview.widget.CardView>
+
 
 
                                 </androidx.cardview.widget.CardView>
@@ -170,13 +188,29 @@
                                     app:layout_constraintVertical_bias="1"
                                     app:layout_constraintWidth_percent="0.45">
 
-                                    <Spinner
-                                        android:id="@+id/semester"
+                                    <androidx.cardview.widget.CardView
+                                        app:cardCornerRadius="5sp"
+                                        android:layout_margin="1sp"
                                         android:layout_width="match_parent"
-                                        android:tooltipText="SEMESTER"
                                         android:layout_height="match_parent">
+                                        <TextView
+                                            android:singleLine="true"
+                                            android:layout_margin="0sp"
+                                            android:hint="Semester"
+                                            android:layout_gravity="center"
+                                            android:gravity="center"
+                                            android:textColor="@color/black"
+                                            android:textColorHint="@color/black"
+                                            android:textSize="20sp"
+                                            android:background="@color/white"
+                                            android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                                            android:id="@+id/semester"
+                                            android:layout_width="match_parent"
+                                            android:tooltipText="BRANCH"
+                                            android:layout_height="match_parent">
 
-                                    </Spinner>
+                                        </TextView>
+                                    </androidx.cardview.widget.CardView>
 
 
                                 </androidx.cardview.widget.CardView>
@@ -191,7 +225,7 @@
                             android:layout_marginRight="5sp"
                             android:layout_marginLeft="5sp"
                             android:layout_width="match_parent"
-                            android:layout_marginTop="50sp"
+                            android:layout_marginTop="20sp"
                             android:layout_height="40sp"
                             android:foregroundGravity="center"
                             android:layout_gravity="center"
@@ -208,7 +242,7 @@
                                     android:layout_height="40sp"
                                     android:layout_gravity="center"
 
-                                    android:backgroundTint="@color/white"
+                                    android:backgroundTint="@color/yellow"
                                     android:foregroundGravity="center"
                                     app:cardCornerRadius="5sp"
                                     app:layout_constraintBottom_toBottomOf="parent"
@@ -219,13 +253,31 @@
                                     app:layout_constraintVertical_bias="1"
                                     app:layout_constraintWidth_percent="01">
 
-                                    <Spinner
+                                    <androidx.cardview.widget.CardView
+                                        app:cardCornerRadius="5sp"
+                                        android:layout_margin="1sp"
                                         android:layout_width="match_parent"
-                                        android:tooltipText="SEMESTER"
-                                        android:id="@+id/intrests"
                                         android:layout_height="match_parent">
+                                        <TextView
+                                            android:layout_margin="0sp"
+                                            android:hint="Select your intrests"
 
-                                    </Spinner>
+                                            android:singleLine="true"
+                                            android:layout_gravity="center"
+                                            android:gravity="center"
+                                            android:textColor="@color/black"
+                                            android:textColorHint="@color/black"
+                                            android:textSize="20sp"
+                                            android:background="@color/white"
+                                            android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                                            android:id="@+id/intrests"
+                                            android:layout_width="match_parent"
+                                            android:tooltipText="BRANCH"
+                                            android:layout_height="match_parent">
+
+                                        </TextView>
+                                    </androidx.cardview.widget.CardView>
+
 
 
                                 </androidx.cardview.widget.CardView>
@@ -244,7 +296,7 @@
                             android:layout_marginRight="10sp"
                             android:textSize="13sp"
                             android:textStyle="bold"
-                            android:layout_marginTop="90sp"
+                            android:layout_marginTop="190sp"
 
                             android:layout_height="wrap_content">
 
