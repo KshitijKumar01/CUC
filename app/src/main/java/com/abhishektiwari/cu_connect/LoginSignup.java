@@ -2,15 +2,22 @@ package com.abhishektiwari.cu_connect;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.TranslateAnimation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginSignup extends AppCompatActivity{
 
@@ -21,6 +28,17 @@ public class LoginSignup extends AppCompatActivity{
     int i=0;
     stepsindicator s;
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if(false)
+        {
+            Intent intent=new Intent(LoginSignup.this,MainActivity.class);
+            LoginSignup.this.startActivity(intent);
+
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +58,8 @@ public class LoginSignup extends AppCompatActivity{
         signup=findViewById(R.id.signuptext);
         view = findViewById(R.id.up_downlayout);
         view.setVisibility(View.INVISIBLE);
+
+
 
         FragmentManager fragmentManager=getSupportFragmentManager();
         fragmentManager.beginTransaction().add(R.id.logsincon,new Login()).commit();
@@ -115,7 +135,11 @@ public class LoginSignup extends AppCompatActivity{
                 signup.setTextColor(getResources().getColor(R.color.black));
                 loginbutton.setBackgroundTintList(  ColorStateList.valueOf(getResources().getColor(R.color.red)));
                 signupbutton.setBackgroundTintList(  ColorStateList.valueOf(getResources().getColor(R.color.white)));
-                fragmentManager.beginTransaction().replace(R.id.logsincon,new Login()).commit();
+                fragmentManager.beginTransaction().setCustomAnimations(
+                        // exit
+                        R.anim.slide_up,   // popEnter
+                        R.anim.slide_down  // popExit
+                ).replace(R.id.logsincon,new Login()).commit();
 
             }
         });
@@ -139,8 +163,11 @@ public class LoginSignup extends AppCompatActivity{
                 signup.setTextColor(getResources().getColor(R.color.white));
                 loginbutton.setBackgroundTintList(  ColorStateList.valueOf(getResources().getColor(R.color.white)));
                 signupbutton.setBackgroundTintList(  ColorStateList.valueOf(getResources().getColor(R.color.red)));
-                fragmentManager.beginTransaction().replace(R.id.logsincon,new Sign_up()).commit();
-
+                fragmentManager.beginTransaction().setCustomAnimations(
+                        // exit
+                        R.anim.slide_up,   // popEnter
+                        R.anim.slide_down  // popExit
+                ).replace(R.id.logsincon,new Sign_up()).commit();
             }
 
 

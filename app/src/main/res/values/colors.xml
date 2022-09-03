@@ -17,4 +17,6 @@
     <color name="green">#00FF6A</color>
     <color name="red">#ff0000</color>
     <color name="yellow">#FDBF00</color>
+    <color name="navigationlogin">#7EE4F5FD</color>
+    <color name="bag">#C8001D2C</color>
 </resources>

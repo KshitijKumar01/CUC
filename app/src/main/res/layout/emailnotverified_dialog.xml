@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp">
+    <TextView
+        android:layout_width="match_parent"
+        android:textStyle="bold"
+        android:textColor="@color/red"
+        android:layout_height="wrap_content"
+        android:text="Your Email id is not verified !"
+        android:textSize="22sp"
+        android:textAlignment="center" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:backgroundTint="@color/redmain"
+        android:background="@color/redmain"
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="10sp"
+        ></View>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="- Check Spam/junk folder of your CU-MAIL if not found in main inbox."
+        android:textSize="15sp"
+        android:layout_marginBottom="5sp"
+        android:textAlignment="viewStart" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="- Click on the verification link"
+        android:textSize="15sp"
+        android:layout_marginBottom="5sp"
+        android:textAlignment="viewStart" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="- get yourself verified"
+        android:textSize="15sp"
+        android:layout_marginBottom="5sp"
+        android:textAlignment="viewStart" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="- You can access this page only after verification"
+        android:textSize="15sp"
+        android:layout_marginBottom="5sp"
+        android:textAlignment="viewStart" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:backgroundTint="@color/redmain"
+        android:background="@color/redmain"
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="10sp"
+        ></View>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="- Not got Verification Email."
+        android:textSize="18sp"
+        android:textColor="@color/redmain"
+        android:layout_marginBottom="10sp"
+        android:textAlignment="viewStart" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:backgroundTint="@color/theme"
+        android:layout_height="35sp"
+        app:cardCornerRadius="10sp"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:text="Resend Mail"
+            android:textSize="22sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textAlignment="center"
+
+            android:layout_height="match_parent">
+
+        </TextView>
+    </androidx.cardview.widget.CardView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="- Entered Wrong UID ??."
+        android:textSize="18sp"
+        android:layout_marginBottom="10sp"
+        android:textColor="@color/redmain"
+
+        android:textAlignment="viewStart" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:backgroundTint="@color/theme"
+        android:layout_height="35sp"
+        app:cardCornerRadius="10sp"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:text="Back to Sign Up"
+            android:textSize="22sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textAlignment="center"
+
+            android:layout_height="match_parent">
+
+        </TextView>
+    </androidx.cardview.widget.CardView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:backgroundTint="@color/redmain"
+        android:background="@color/redmain"
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="10sp"
+        ></View>
+
+
+</LinearLayout>
