@@ -36,7 +36,7 @@
                 android:layout_marginTop="0sp"
                 android:layout_marginRight="0sp"
                 android:layout_marginBottom="0sp"
-                android:backgroundTint="#C8001D2C"
+                android:backgroundTint="@color/navigationlogin"
                 app:cardCornerRadius="0sp">
                 <ScrollView
                     android:layout_width="match_parent"
@@ -58,7 +58,7 @@
                             android:gravity="center"
                             android:textStyle="bold"
                             android:text="LOGIN"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:textSize="30sp"
 
                             >
@@ -68,12 +68,14 @@
                             android:layout_width="150sp"
                             android:textAlignment="center"
                             android:layout_gravity="center"
+                            app:cardElevation="0dp"
                             app:cardCornerRadius="190sp"
+                            android:backgroundTint="#00FFFFFF"
                             android:layout_marginTop="30sp"
                             android:layout_height="150sp">
                             <ImageView
                                 android:layout_width="match_parent"
-                                android:src="@mipmap/logobg"
+                                android:src="@mipmap/nonbglogo"
                                 android:layout_height="match_parent">
 
                             </ImageView>
@@ -83,6 +85,7 @@
                             android:background="@drawable/cardbg"
 
 
+                            app:cardCornerRadius="5sp"
                             android:layout_width="match_parent"
                             android:layout_marginRight="12sp"
                             android:layout_marginTop="40sp"
@@ -129,10 +132,11 @@
                         </androidx.cardview.widget.CardView>
                         <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
-                            app:cardCornerRadius="0sp"
+                            app:cardCornerRadius="5sp"
                             android:layout_marginRight="12sp"
                             android:layout_marginTop="20sp"
                             android:layout_height="40sp"
+
                             android:foregroundGravity="center"
                             android:layout_gravity="center"
 
@@ -192,23 +196,14 @@
                             android:text="Forgot  Password"
                             android:gravity="right"
                             android:layout_marginRight="13sp"
+                            android:textStyle="bold"
                             android:layout_gravity="center"
 
-                            android:textColor="@color/white"
+                            android:textColor="@color/bag"
                             android:layout_height="wrap_content">
 
                         </TextView>
-                        <View
-                            android:layout_width="100sp"
-                            android:layout_gravity="right"
-                            android:background="@color/yellow"
-                            android:layout_marginRight="20sp"
 
-                            android:backgroundTint="@color/yellow"
-                            android:layout_height="2dp"
-                            >
-
-                        </View>
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="40sp"
@@ -248,7 +243,7 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
                         <TextView
                             android:layout_width="match_parent"
-                            android:textColor="@color/yellow"
+                            android:textColor="@color/black"
                             android:text="Login very carefully and enter correct credentials , because after 3 incorrect attempts your account will be blocked"
                             android:layout_marginLeft="15sp"
                             android:layout_marginRight="10sp"

@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:backgroundTint="#C8001D2C"
+                android:backgroundTint="@color/navigationlogin"
                 app:cardCornerRadius="0sp"
                 app:cardElevation="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -80,14 +80,14 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <ScrollView
-                    android:layout_marginBottom="80sp"
+                    android:layout_marginBottom="85sp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <LinearLayout
                         android:layout_width="match_parent"
 
-                        android:layout_height="match_parent"
+                        android:layout_height="20sp"
                         android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -100,7 +100,7 @@
                             android:layout_marginTop="20sp"
                             android:gravity="center"
                             android:text="JOIN US"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:textSize="30sp"
                             android:textStyle="bold"
 
@@ -145,6 +145,7 @@
                                 android:orientation="horizontal">
 
                                 <EditText
+                                    android:id="@+id/semail"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_marginLeft="10sp"
@@ -192,6 +193,8 @@
                                 android:orientation="horizontal">
 
                                 <EditText
+                                    android:id="@+id/spassword"
+                                    android:inputType="textPassword"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_marginLeft="10sp"
@@ -200,18 +203,20 @@
                                     android:paddingLeft="10sp"
                                     android:textColorHint="@color/theme"
                                     app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toStartOf="@+id/imageView6"
+                                    app:layout_constraintEnd_toStartOf="@+id/eye"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent">
 
                                 </EditText>
 
                                 <ImageView
-                                    android:id="@+id/imageView6"
+                                    android:id="@+id/eye"
                                     android:layout_width="20sp"
+                                    android:clickable="true"
                                     android:layout_height="20sp"
                                     android:layout_marginRight="10sp"
-                                    android:src="@mipmap/eyeclosed"
+
+                                    android:background="@mipmap/eyeopen"
                                     app:layout_constraintBottom_toBottomOf="parent"
 
                                     app:layout_constraintEnd_toStartOf="@+id/imageView5"
@@ -254,6 +259,8 @@
                                 android:orientation="horizontal">
 
                                 <EditText
+                                    android:inputType="textPassword"
+                                    android:id="@+id/spasswordagain"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_marginLeft="10sp"
@@ -262,18 +269,20 @@
                                     android:paddingLeft="10sp"
                                     android:textColorHint="@color/theme"
                                     app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toStartOf="@+id/imageView7"
+                                    app:layout_constraintEnd_toStartOf="@+id/eyeagain"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent">
 
                                 </EditText>
 
                                 <ImageView
-                                    android:id="@+id/imageView7"
-                                    android:layout_width="20sp"
-                                    android:layout_height="20sp"
+                                    android:id="@+id/eyeagain"
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
                                     android:layout_marginRight="10sp"
-                                    android:src="@mipmap/eyeclosed"
+
+                                    android:background="@mipmap/eyeopen"
+                                    android:clickable="true"
                                     app:layout_constraintBottom_toBottomOf="parent"
 
                                     app:layout_constraintEnd_toStartOf="@+id/imageView8"
@@ -305,7 +314,7 @@
                             android:layout_marginTop="30sp"
                             android:layout_marginRight="10sp"
                             android:text="Please Enter the correct UID a verification email will be sent to you on that E-mail -ID which is asociated with your UID"
-                            android:textColor="@color/yellow"
+                            android:textColor="@color/black"
                             android:textSize="13sp"
 
                             android:textStyle="bold">
