@@ -8,8 +8,7 @@
     tools:context=".LoginSignup">
 
     <LinearLayout
-        android:background="@color/redmain"
-        android:backgroundTint="@color/redmain"
+        android:background="@mipmap/pagebg"
         android:orientation="vertical"
         android:id="@+id/logsincon"
         android:layout_width="match_parent"

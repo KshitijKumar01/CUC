@@ -27,13 +27,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Sign_up extends Fragment {
     CardView next;
     ImageView seye,seyeagain;
     int i,j;
     EditText semail,spassword,spasswordagain;
-    String Email,Password;
+    String Email,Password,uid;
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser user = mAuth.getCurrentUser();
     SharedPreferences sharedpreferences;
@@ -162,6 +163,7 @@ public class Sign_up extends Fragment {
                         @Override
                         public void onSuccess(AuthResult authResult) {
 
+                            uid=user.getUid();
                             SendVerificationmail();
                             Toast.makeText(getContext(), "sending email", Toast.LENGTH_SHORT).show();
                         }
@@ -186,11 +188,22 @@ public class Sign_up extends Fragment {
                 mAuth.signOut();
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 editor.putString("Email", Email);
+                editor.putString("Uid",uid);
+                FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("College UID").setValue(Email);
+                FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Password").setValue(Password);
+                FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Phone no").setValue(null);
+                FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("EmailVerified").setValue(null);
+                FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Whatsapp No").setValue(null);
+                FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("PhoneonVerified").setValue(null);
                 editor.putString("Password", Password);
-                editor.putString("1", Password);
+                editor.putString("step", String.valueOf(1));
                 editor.apply();
                 FragmentManager manager = getActivity().getSupportFragmentManager();
-                manager.beginTransaction().replace(R.id.logsincon,new Steptwo()).commit();
+                manager.beginTransaction().setCustomAnimations(
+                        // exit
+                        R.anim.slide_up,   // popEnter
+                        R.anim.slide_down  // popExit
+                ).replace(R.id.logsincon,new Steptwo()).commit();
 
             }
         }).addOnFailureListener(new OnFailureListener() {

@@ -5,9 +5,12 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -25,7 +28,9 @@ public class LoginSignup extends AppCompatActivity{
     TextView login,signup;
     LinearLayout view;
     boolean opened;
-    int i=0;
+    int i=0,k;
+
+    SharedPreferences sharedpreferences;
     stepsindicator s;
 
     @Override
@@ -44,10 +49,23 @@ public class LoginSignup extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_signup);
-
+        sharedpreferences = getSharedPreferences("user_data", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString("step", String.valueOf(4));
         s=new stepsindicator();
         loginbutton=findViewById(R.id.loginbutton);
         signupbutton=findViewById(R.id.signupbutton);
+
+        final Handler handler = new Handler();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                s.getI();
+                indicatestep();
+                handler.postDelayed(this, 1000);
+            }
+        });
+
 
         indicatestep();
         one=findViewById(R.id.one);
