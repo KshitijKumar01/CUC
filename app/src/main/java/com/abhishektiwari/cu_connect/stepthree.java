@@ -3,13 +3,17 @@ package com.abhishektiwari.cu_connect;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.viewmodel.CreationExtras;
 
 import android.text.Editable;
@@ -25,6 +29,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -33,9 +39,15 @@ import java.util.List;
 public class stepthree extends Fragment  {
 
     TextView branches,semester,intrests;
-
+    SharedPreferences sharedpreferences;
     Dialog dialog;
+    stepsindicator s;
+    CardView next;
 
+    int i=0;
+    String uid;
+
+    String semestert,brancht;
     public stepthree() {
         // Required empty public constructor
     }
@@ -56,8 +68,13 @@ public class stepthree extends Fragment  {
         branches=view.findViewById(R.id.branch);
         semester=view.findViewById(R.id.semester);
         intrests=view.findViewById(R.id.intrests);
+        s=new stepsindicator();
+        s.setI(3);
 
-
+        sharedpreferences = getContext().getSharedPreferences("user_data", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString("step", String.valueOf(4));
+        uid=sharedpreferences.getString("Uid",null);
         // Spinner Drop down elements
         List<String> branchesa = new ArrayList<String>();
         branchesa.add("Business Services");
@@ -67,16 +84,16 @@ public class stepthree extends Fragment  {
         branchesa.add("Travel");
 
         List<String> semestera = new ArrayList<String>();
-        semestera.add("1");
-        semestera.add("2");
-        semestera.add("3");
-        semestera.add("4");
-        semestera.add("5");
-        semestera.add("6");
-        semestera.add("7");
-        semestera.add("8");
-        semestera.add("9");
-        semestera.add("10");
+        semestera.add("semester  1");
+        semestera.add("semester  2");
+        semestera.add("semester  3");
+        semestera.add("semester  4");
+        semestera.add("semester  5");
+        semestera.add("semester  6");
+        semestera.add("semester  7");
+        semestera.add("semester  8");
+        semestera.add("semester  9");
+        semestera.add("semester  10");
 
         final String[] listItems = new String[]{"C", "C++", "JAVA", "PYTHON"};
         final boolean[] checkedItems = new boolean[listItems.length];
@@ -119,9 +136,19 @@ public class stepthree extends Fragment  {
                     public void onClick(DialogInterface dialog, int which) {
                         for (int i = 0; i < checkedItems.length; i++) {
                             if (checkedItems[i]) {
+
                                 intrests.setText(intrests.getText() + selectedItems.get(i) + "  ");
                             }
                         }
+                        if(checkedItems.length>0)
+                        {
+                            i=1;
+                        }
+                        else
+                        {
+                            i=0;
+                        }
+
                     }
                 });
 
@@ -140,7 +167,9 @@ public class stepthree extends Fragment  {
                     public void onClick(DialogInterface dialog, int which) {
                         for (int i = 0; i < checkedItems.length; i++) {
                             checkedItems[i] = false;
+
                         }
+                        i=0;
                     }
                 });
 
@@ -192,6 +221,7 @@ public class stepthree extends Fragment  {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         semester.setText(adapter.getItem(position));
 
+                        semestert=adapter.getItem(position);
                         dialog.dismiss();
                     }
                 });
@@ -233,10 +263,41 @@ public class stepthree extends Fragment  {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         branches.setText(adapter.getItem(position));
+                        brancht=adapter.getItem(position);
                         dialog.dismiss();
 
                     }
                 });
+            }
+        });
+
+        next=view.findViewById(R.id.next);
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(i==1 && !brancht.isEmpty() && !semestert.isEmpty())
+                {
+                    FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Semester").setValue(semestert);
+                    FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Branch").setValue(brancht);
+                    for (int i = 0; i < checkedItems.length; i++) {
+                        if (checkedItems[i]) {
+
+                            FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Intrests").child(String.valueOf(i)).setValue(selectedItems.get(i));
+
+                        }
+                    }
+                    FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Intrests").child(String.valueOf(checkedItems.length+1)).setValue("others");
+
+
+                    FragmentManager fragmentManager=getActivity().getSupportFragmentManager();
+                    s.setI(4);
+                    fragmentManager.beginTransaction().setCustomAnimations(
+                            // exit
+                            R.anim.slide_up,   // popEnter
+                            R.anim.slide_down  // popExit
+                    ).replace(R.id.logsincon,new stepfour()).commit();
+                }
+
             }
         });
 
