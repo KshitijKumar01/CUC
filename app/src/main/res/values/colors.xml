@@ -2,7 +2,7 @@
 <resources>
     <color name="purple_200">#48A0FC86</color>
     <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
+    <color name="purple_700">#FF3700B3</color>c
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
@@ -19,4 +19,5 @@
     <color name="yellow">#FDBF00</color>
     <color name="navigationlogin">#7EE4F5FD</color>
     <color name="bag">#C8001D2C</color>
+    <color name="whatsappgreen">#0C8539</color>
 </resources>
