@@ -42,6 +42,7 @@ public class Steptwo extends Fragment {
     EditText otp,phoneno;
     CardView views,verifyotpbtn;
     boolean opened;
+     Handler handler;
     int i=0;
     SharedPreferences sharedpreferences;
     AlertDialog.Builder alert;
@@ -69,6 +70,12 @@ public class Steptwo extends Fragment {
 
         views = view.findViewById(R.id.otpbox);
         views.setVisibility(View.INVISIBLE);
+        sharedpreferences = getActivity().getSharedPreferences("user_data", Context.MODE_PRIVATE);
+        Email=sharedpreferences.getString("Email",null);
+        Password=sharedpreferences.getString("Password",null);
+        uid=sharedpreferences.getString("Uid",null);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString("step", String.valueOf(2));
         s=new stepsindicator();
         s.setI(2);
         alert = new AlertDialog.Builder(getContext());
@@ -81,22 +88,13 @@ public class Steptwo extends Fragment {
         otp=view.findViewById(R.id.otp);
         phoneno=view.findViewById(R.id.phoneno);
 
-        final Handler handler = new Handler();
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                if(FirebaseAuth.getInstance().getCurrentUser().isEmailVerified())
-                {
-                    alertDialog.dismiss();
-                }
-                else
-                {
-                    alertDialog.show();
-                }
-                handler.postDelayed(this, 1000);
-            }
-        });
+        handler = new Handler();
 
+        if(Email!=null && Password!=null)
+        {
+            Toast.makeText(getContext(), "Email"+Email+Password, Toast.LENGTH_SHORT).show();
+            loginnow(Email+"@cuchd.in",Password);
+        }
         otpstatus=view.findViewById(R.id.otpstatustext);
 
         otpstatus.setText("Send Otp");
@@ -160,17 +158,8 @@ public class Steptwo extends Fragment {
 
             }
         });
-        sharedpreferences = getActivity().getSharedPreferences("user_data", Context.MODE_PRIVATE);
-        Email=sharedpreferences.getString("Email",null);
-        Password=sharedpreferences.getString("Password",null);
-        uid=sharedpreferences.getString("Uid",null);
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putString("step", String.valueOf(2));
-        if(Email!=null && Password!=null)
-        {
-            Toast.makeText(getContext(), "Email"+Email+Password, Toast.LENGTH_SHORT).show();
-            loginnow(Email+"@cuchd.in",Password);
-        }
+
+
 
 
 
@@ -183,6 +172,23 @@ public class Steptwo extends Fragment {
         firebaseAuth.signInWithEmailAndPassword(s,password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(FirebaseAuth.getInstance().getCurrentUser().isEmailVerified())
+                        {
+                            alertDialog.dismiss();
+                        }
+                        else
+                        {
+                            alertDialog.show();
+                        }
+                        handler.postDelayed(this, 1000);
+                    }
+
+                });
+
+
 
                 if(firebaseAuth.getCurrentUser().isEmailVerified())
                 {
