@@ -10,7 +10,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoryRecycler"
         android:orientation="horizontal"
-        android:layout_marginTop="5sp"
+        android:layout_marginTop="0sp"
         android:layout_width="match_parent"
         android:layout_gravity="center"
         android:foregroundGravity="center"

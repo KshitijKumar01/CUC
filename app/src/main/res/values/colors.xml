@@ -20,4 +20,5 @@
     <color name="navigationlogin">#7EE4F5FD</color>
     <color name="bag">#C8001D2C</color>
     <color name="whatsappgreen">#0C8539</color>
+    <color name="bacgroundforSetting">#808080</color>
 </resources>
