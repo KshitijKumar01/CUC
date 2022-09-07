@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.companion:
 
-                getSupportFragmentManager().beginTransaction().replace(R.id.maincontainer,new Companion()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.maincontainer,new companion_main()).commit();
                 ChangenavbarBackground(2);
 
                 break;
