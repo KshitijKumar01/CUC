@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".companion_main">
+
+ <androidx.constraintlayout.widget.ConstraintLayout
+     android:layout_width="match_parent"
+     android:layout_height="50sp"
+     >
+
+     <androidx.cardview.widget.CardView
+         app:cardElevation="0dp"
+         android:layout_width="0dp"
+         android:layout_height="40sp"
+         app:layout_constraintHorizontal_bias="0.02"
+         app:layout_constraintWidth_percent="0.45"
+         app:cardCornerRadius="25sp"
+         app:cardBackgroundColor="#787C7E"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent">
+         <androidx.constraintlayout.widget.ConstraintLayout
+             android:layout_width="match_parent"
+             android:layout_margin="0sp"
+             app:cardCornerRadius="25sp"
+
+             android:layout_height="match_parent">
+
+             <androidx.cardview.widget.CardView
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 app:cardCornerRadius="25sp"
+                 app:cardElevation="0dp"
+
+                 android:backgroundTint="@color/redmain"
+                 android:id="@+id/compbg"
+                 app:layout_constraintBottom_toBottomOf="parent"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toTopOf="parent">
+
+             </androidx.cardview.widget.CardView>
+             <androidx.cardview.widget.CardView
+                 android:layout_width="match_parent"
+                 android:backgroundTint="@color/transparent"
+                 android:layout_height="match_parent"
+                 app:cardCornerRadius="25sp"
+                 app:layout_constraintBottom_toBottomOf="parent"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toTopOf="parent">
+                 <TextView
+                     android:id="@+id/companion_button"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:layout_gravity="center"
+                     android:gravity="center"
+                     android:text="Companion"
+                     android:textColor="@color/white"
+                     android:textSize="20sp"
+                     android:textStyle="normal"
+                     app:layout_constraintBottom_toBottomOf="parent"
+                     app:layout_constraintEnd_toEndOf="parent"
+
+                     app:layout_constraintStart_toStartOf="parent"
+                     app:layout_constraintTop_toTopOf="parent">
+
+                 </TextView>
+
+             </androidx.cardview.widget.CardView>
+
+
+
+
+
+         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+     </androidx.cardview.widget.CardView>
+     <androidx.cardview.widget.CardView
+         android:layout_width="0dp"
+         app:cardElevation="0dp"
+
+         android:layout_height="40sp"
+         app:layout_constraintHorizontal_bias="0.98"
+         app:layout_constraintWidth_percent="0.45"
+         app:cardCornerRadius="25sp"
+         app:cardBackgroundColor="#787C7E"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent">
+         <androidx.constraintlayout.widget.ConstraintLayout
+             android:layout_width="match_parent"
+             android:layout_margin="0sp"
+             app:cardCornerRadius="25sp"
+
+             android:layout_height="match_parent">
+
+             <androidx.cardview.widget.CardView
+                 app:cardElevation="0dp"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 app:cardCornerRadius="25sp"
+                 android:id="@+id/roombg"
+                 android:backgroundTint="@color/redmain"
+                 app:layout_constraintBottom_toBottomOf="parent"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toTopOf="parent">
+
+             </androidx.cardview.widget.CardView>
+             <androidx.cardview.widget.CardView
+                 android:layout_width="match_parent"
+                 android:backgroundTint="@color/transparent"
+                 android:layout_height="match_parent"
+                 app:cardCornerRadius="25sp"
+                 app:layout_constraintBottom_toBottomOf="parent"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toTopOf="parent">
+                 <TextView
+                     android:id="@+id/roommates_button"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:layout_gravity="center"
+                     android:gravity="center"
+                     android:text="Room mates"
+                     android:textColor="@color/white"
+                     android:textSize="20sp"
+                     android:textStyle="normal"
+                     app:layout_constraintBottom_toBottomOf="parent"
+                     app:layout_constraintEnd_toEndOf="parent"
+
+                     app:layout_constraintStart_toStartOf="parent"
+                     app:layout_constraintTop_toTopOf="parent">
+
+                 </TextView>
+
+             </androidx.cardview.widget.CardView>
+
+
+
+
+
+         </androidx.constraintlayout.widget.ConstraintLayout>
+
+     </androidx.cardview.widget.CardView>
+
+ </androidx.constraintlayout.widget.ConstraintLayout>
+    <FrameLayout
+        android:id="@+id/companion_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+
+</LinearLayout>

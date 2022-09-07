@@ -10,11 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 
 public class Home extends Fragment {
 
-    RecyclerView posts_recycler;
+    RecyclerView posts_recycler, top_view_recycler;
     home_posts_recycler posts_adapter;
+    home_category_adapter category_adapter;
 
 
     public Home() {
@@ -36,9 +38,23 @@ public class Home extends Fragment {
         posts_recycler=view.findViewById(R.id.postsrecycler);
         posts_recycler.setHasFixedSize(true);
         posts_recycler.setLayoutManager(new LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false));
-
         posts_adapter=new home_posts_recycler(getContext());
         posts_recycler.setAdapter(posts_adapter);
+
+
+        ArrayList<String> arr =new ArrayList<>();
+        arr.add("home");
+        arr.add("home");
+        arr.add("home");
+        arr.add("home");
+        arr.add("home");
+        arr.add("home");
+
+        top_view_recycler = view.findViewById(R.id.categoryRecycler);
+        top_view_recycler.setHasFixedSize(true);
+        top_view_recycler.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
+        category_adapter = new home_category_adapter(getContext(), arr);
+        top_view_recycler.setAdapter(category_adapter);
 
         return  view;
     }

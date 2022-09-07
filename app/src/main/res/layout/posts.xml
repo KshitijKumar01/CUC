@@ -90,18 +90,17 @@
 
             <ImageButton
 
-                android:layout_width="30sp"
-                android:layout_marginLeft="20sp"
-                android:layout_height="30sp"
+                android:layout_width="25sp"
+                android:layout_height="25dp"
                 android:layout_gravity="center"
-                android:background="@mipmap/notfollowing"
-               />
+                android:layout_marginLeft="25sp"
+                android:background="@mipmap/notfollowing" />
 
             <ImageButton
                 android:layout_gravity="center"
-                android:layout_width="30sp"
+                android:layout_width="25sp"
                 android:layout_marginLeft="20sp"
-                android:layout_height="30sp"
+                android:layout_height="25sp"
                 android:background="@mipmap/save"
 
 
@@ -114,8 +113,8 @@
                 android:layout_weight="1" />
 
             <ImageButton
-                android:layout_width="30sp"
-                android:layout_height="30sp"
+                android:layout_width="25sp"
+                android:layout_height="25sp"
                 android:layout_gravity="center"
                 android:background="@mipmap/like"
 
