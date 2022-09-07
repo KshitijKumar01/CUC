@@ -44,11 +44,11 @@ public class Home extends Fragment {
 
         ArrayList<String> arr =new ArrayList<>();
         arr.add("home");
-        arr.add("home");
-        arr.add("home");
-        arr.add("home");
-        arr.add("home");
-        arr.add("home");
+        arr.add("Technologu");
+        arr.add("Sports");
+        arr.add("Btech");
+        arr.add("Cse");
+        arr.add("Others");
 
         top_view_recycler = view.findViewById(R.id.categoryRecycler);
         top_view_recycler.setHasFixedSize(true);

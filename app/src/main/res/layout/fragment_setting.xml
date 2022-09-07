@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Setting">
@@ -25,6 +26,33 @@
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
             android:paddingBottom="15dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                app:cardCornerRadius="2sp"
+                android:background="@color/black"
+                android:backgroundTint="@color/black"
+                android:foregroundGravity="right"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="20sp"
+                android:layout_marginTop="10sp">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    app:cardCornerRadius="2sp"
+                    android:layout_margin="1sp"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_margin="3sp"
+                        android:layout_width="match_parent"
+                        android:src="@mipmap/pen"
+                        android:layout_height="match_parent">
+
+                    </ImageView>
+
+                </androidx.cardview.widget.CardView>
+
+            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/item_profile_picture_card_parent"
@@ -112,235 +140,274 @@
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_margin="10sp"
+        app:cardCornerRadius="3sp"
+        android:backgroundTint="@color/black"
+        android:layout_height="50sp">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+
+            android:layout_margin="1sp"
+            app:cardCornerRadius="3sp"
+            android:backgroundTint="@color/green"
+            android:layout_height="match_parent">
+            <TextView
+                android:textSize="20sp"
+               android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:text="Account Activated"
+                android:layout_height="match_parent">
+
+            </TextView>
+
+        </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
+
     <ScrollView
 
         android:layout_width="match_parent"
-        app:layout_constraintVertical_bias="1"
-        android:layout_height="0dp"
+
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileview">
-        <androidx.cardview.widget.CardView
 
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_margin="10sp"
+            android:layout_marginBottom="2sp"
+            android:layout_marginRight="10sp"
+            android:layout_marginLeft="10sp"
             android:backgroundTint="#B5001D2C"
             app:cardCornerRadius="2sp"
-            app:cardElevation="6sp"
+            app:cardElevation="3sp"
             android:layout_gravity="center"
-            android:paddingTop="20sp"
-            android:paddingBottom="20sp"
-            android:layout_height="match_parent">
-            <LinearLayout
+            android:layout_height="match_parent"
+            >
+            <androidx.cardview.widget.CardView
+
                 android:layout_width="match_parent"
-                android:orientation="vertical"
+
+                android:layout_marginBottom="2sp"
+                android:backgroundTint="@color/cardview_light_background"
+                app:cardCornerRadius="2sp"
+                app:cardElevation="6sp"
                 android:layout_gravity="center"
                 android:layout_height="match_parent">
-                <androidx.cardview.widget.CardView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="35sp"
-                    android:layout_marginTop="50sp"
-
-                    android:layout_marginBottom="10sp"
-                    android:layout_marginRight="20sp"
-                    android:layout_marginLeft="20sp"
-                    android:backgroundTint="@color/yellow"
-                    app:cardCornerRadius="0sp"
-                    >
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_height="match_parent">
                     <androidx.cardview.widget.CardView
-                        android:layout_marginBottom="2sp"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="35sp"
+                        android:layout_marginTop="30sp"
 
-                        android:backgroundTint="@color/white"
-                        app:cardCornerRadius="0sp"
+                        android:layout_marginBottom="10sp"
+                        android:layout_marginRight="20sp"
+                        android:layout_marginLeft="20sp"
+                        android:backgroundTint="@color/yellow"
+                        app:cardCornerRadius="2sp"
                         >
-                        <TextView
-                            android:textSize="15sp"
-                            android:text="ADD WHATSAPP NO"
-                            android:textStyle="bold"
-                            android:gravity="center"
-                            android:textColor="@color/black"
+                        <androidx.cardview.widget.CardView
+                            android:layout_marginBottom="2sp"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
 
-                        </TextView>
+                            android:backgroundTint="@color/theme"
+                            app:cardCornerRadius="2sp"
+                            >
+                            <TextView
+                                android:textSize="15sp"
+                                android:text="ADD WHATSAPP NO"
+                                android:textStyle="bold"
+                                android:gravity="center"
+                                android:textColor="@color/white"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                            </TextView>
+
+                        </androidx.cardview.widget.CardView>
+
+
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="35sp"
+                        android:layout_marginRight="20sp"
+                        android:layout_marginTop="10sp"
+                        android:layout_marginBottom="10sp"
+                        android:layout_marginLeft="20sp"
+                        android:backgroundTint="@color/yellow"
+                        app:cardCornerRadius="2sp"
+                        >
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_marginBottom="2sp"
+                            android:layout_height="match_parent"
+
+                            android:backgroundTint="@color/theme"
+                            app:cardCornerRadius="2sp"
+                            >
+                            <TextView
+                                android:textSize="15sp"
+                                android:text="UPDATE PASSWORD"
+                                android:textStyle="bold"
+                                android:gravity="center"
+                                android:textColor="@color/white"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                            </TextView>
+
+                        </androidx.cardview.widget.CardView>
+
+
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="35sp"
+                        android:layout_marginRight="20sp"
+                        android:layout_marginTop="10sp"
+                        android:layout_marginBottom="10sp"
+                        android:layout_marginLeft="20sp"
+                        android:backgroundTint="@color/yellow"
+                        app:cardCornerRadius="2sp"
+                        >
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="2sp"
+
+                            android:backgroundTint="@color/theme"
+                            app:cardCornerRadius="2sp"
+                            >
+                            <TextView
+                                android:textSize="15sp"
+                                android:text="UPDATE PHONE NO"
+                                android:textStyle="bold"
+                                android:gravity="center"
+                                android:textColor="@color/white"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                            </TextView>
+
+                        </androidx.cardview.widget.CardView>
+
+
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="35sp"
+                        android:layout_marginRight="20sp"
+                        android:layout_marginTop="10sp"
+                        android:layout_marginBottom="10sp"
+                        android:layout_marginLeft="20sp"
+                        android:backgroundTint="@color/yellow"
+                        app:cardCornerRadius="2sp"
+                        >
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="2sp"
+                            android:backgroundTint="@color/theme"
+                            app:cardCornerRadius="2sp"
+                            >
+                            <TextView
+                                android:textSize="15sp"
+                                android:text="DELETE ACCOUNT"
+                                android:textStyle="bold"
+                                android:gravity="center"
+                                android:textColor="@color/white"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                            </TextView>
+
+                        </androidx.cardview.widget.CardView>
+
+
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="35sp"
+                        android:layout_marginRight="20sp"
+                        android:layout_marginTop="10sp"
+                        android:layout_marginBottom="10sp"
+                        android:layout_marginLeft="20sp"
+                        android:backgroundTint="@color/yellow"
+                        app:cardCornerRadius="2sp"
+                        >
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="2sp"
+                            android:backgroundTint="@color/theme"
+                            app:cardCornerRadius="2sp"
+                            >
+                            <TextView
+                                android:textSize="15sp"
+                                android:text="LOGOUT ACCOUNT"
+                                android:textStyle="bold"
+                                android:gravity="center"
+                                android:textColor="@color/white"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                            </TextView>
+
+                        </androidx.cardview.widget.CardView>
+
+
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="35sp"
+                        android:layout_marginRight="20sp"
+                        android:layout_marginTop="10sp"
+                        android:layout_marginBottom="50sp"
+                        android:layout_marginLeft="20sp"
+                        android:backgroundTint="@color/yellow"
+                        app:cardCornerRadius="2sp"
+                        >
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+
+                            android:layout_marginBottom="2sp"
+                            android:backgroundTint="@color/theme"
+                            app:cardCornerRadius="2sp"
+                            >
+                            <TextView
+                                android:textSize="15sp"
+                                android:text="INVITE FRIEND"
+                                android:textStyle="bold"
+                                android:gravity="center"
+                                android:textColor="@color/white"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                            </TextView>
+
+                        </androidx.cardview.widget.CardView>
+
 
                     </androidx.cardview.widget.CardView>
 
 
-                </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="35sp"
-                    android:layout_marginRight="20sp"
-                    android:layout_marginTop="10sp"
-                    android:layout_marginBottom="10sp"
-                    android:layout_marginLeft="20sp"
-                    android:backgroundTint="@color/yellow"
-                    app:cardCornerRadius="0sp"
-                    >
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_marginBottom="2sp"
-                        android:layout_height="match_parent"
-
-                        android:backgroundTint="@color/white"
-                        app:cardCornerRadius="0sp"
-                        >
-                        <TextView
-                            android:textSize="15sp"
-                            android:text="UPDATE PASSWORD"
-                            android:textStyle="bold"
-                            android:gravity="center"
-                            android:textColor="@color/black"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                        </TextView>
-
-                    </androidx.cardview.widget.CardView>
-
-
-                </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="35sp"
-                    android:layout_marginRight="20sp"
-                    android:layout_marginTop="10sp"
-                    android:layout_marginBottom="10sp"
-                    android:layout_marginLeft="20sp"
-                    android:backgroundTint="@color/yellow"
-                    app:cardCornerRadius="0sp"
-                    >
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="2sp"
-
-                        android:backgroundTint="@color/white"
-                        app:cardCornerRadius="0sp"
-                        >
-                        <TextView
-                            android:textSize="15sp"
-                            android:text="UPDATE PHONE NO"
-                            android:textStyle="bold"
-                            android:gravity="center"
-                            android:textColor="@color/black"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                        </TextView>
-
-                    </androidx.cardview.widget.CardView>
-
-
-                </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="35sp"
-                    android:layout_marginRight="20sp"
-                    android:layout_marginTop="10sp"
-                    android:layout_marginBottom="10sp"
-                    android:layout_marginLeft="20sp"
-                    android:backgroundTint="@color/yellow"
-                    app:cardCornerRadius="0sp"
-                    >
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="2sp"
-                        android:backgroundTint="@color/white"
-                        app:cardCornerRadius="0sp"
-                        >
-                        <TextView
-                            android:textSize="15sp"
-                            android:text="DELETE ACCOUNT"
-                            android:textStyle="bold"
-                            android:gravity="center"
-                            android:textColor="@color/black"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                        </TextView>
-
-                    </androidx.cardview.widget.CardView>
-
-
-                </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="35sp"
-                    android:layout_marginRight="20sp"
-                    android:layout_marginTop="10sp"
-                    android:layout_marginBottom="10sp"
-                    android:layout_marginLeft="20sp"
-                    android:backgroundTint="@color/yellow"
-                    app:cardCornerRadius="0sp"
-                    >
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="2sp"
-                        android:backgroundTint="@color/white"
-                        app:cardCornerRadius="0sp"
-                        >
-                        <TextView
-                            android:textSize="15sp"
-                            android:text="LOGOUT ACCOUNT"
-                            android:textStyle="bold"
-                            android:gravity="center"
-                            android:textColor="@color/black"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                        </TextView>
-
-                    </androidx.cardview.widget.CardView>
-
-
-                </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="35sp"
-                    android:layout_marginRight="20sp"
-                    android:layout_marginTop="10sp"
-                    android:layout_marginBottom="50sp"
-                    android:layout_marginLeft="20sp"
-                    android:backgroundTint="@color/yellow"
-                    app:cardCornerRadius="0sp"
-                    >
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-
-                        android:layout_marginBottom="2sp"
-                        android:backgroundTint="@color/white"
-                        app:cardCornerRadius="0sp"
-                        >
-                        <TextView
-                            android:textSize="15sp"
-                            android:text="INVITE FRIEND"
-                            android:textStyle="bold"
-                            android:gravity="center"
-                            android:textColor="@color/black"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                        </TextView>
-
-                    </androidx.cardview.widget.CardView>
-
-
-                </androidx.cardview.widget.CardView>
-
-
-            </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
         </androidx.cardview.widget.CardView>
+
 
 
     </ScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

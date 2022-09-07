@@ -30,13 +30,14 @@ public class home_category_adapter extends RecyclerView.Adapter<home_category_ad
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.category.setText(mCategories.get(position));
 
     }
 
     @Override
     public int getItemCount() {
-//        return mCategories.size();
-        return 10;
+        return mCategories.size();
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
