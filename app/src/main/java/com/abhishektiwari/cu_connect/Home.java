@@ -1,16 +1,40 @@
 package com.abhishektiwari.cu_connect;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.github.dhaval2404.imagepicker.ImagePicker;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
 public class Home extends Fragment {
 
@@ -18,6 +42,9 @@ public class Home extends Fragment {
     home_posts_recycler posts_adapter;
     home_category_adapter category_adapter;
 
+    Dialog dialog;
+
+    ImageView addpost;
 
     public Home() {
         // Required empty public constructor
@@ -34,15 +61,23 @@ public class Home extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_home, container, false);
-        posts_recycler=view.findViewById(R.id.postsrecycler);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        posts_recycler = view.findViewById(R.id.postsrecycler);
         posts_recycler.setHasFixedSize(true);
-        posts_recycler.setLayoutManager(new LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false));
-        posts_adapter=new home_posts_recycler(getContext());
+        posts_recycler.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
+        posts_adapter = new home_posts_recycler(getContext());
         posts_recycler.setAdapter(posts_adapter);
+        addpost = view.findViewById(R.id.addpost);
+        addpost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getContext(),Post_for_home.class);
+                startActivity(intent);
+            }
+        });
 
 
-        ArrayList<String> arr =new ArrayList<>();
+        ArrayList<String> arr = new ArrayList<>();
         arr.add("home");
         arr.add("Technologu");
         arr.add("Sports");
@@ -56,6 +91,12 @@ public class Home extends Fragment {
         category_adapter = new home_category_adapter(getContext(), arr);
         top_view_recycler.setAdapter(category_adapter);
 
-        return  view;
+
+        return view;
     }
+
+
+
+
+
 }
