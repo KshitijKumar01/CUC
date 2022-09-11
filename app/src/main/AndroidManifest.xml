@@ -4,6 +4,9 @@
     package="com.abhishektiwari.cu_connect">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -11,39 +14,40 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/logo"
         android:label="CU Connect"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Cu_Connect"
         tools:targetApi="31">
         <activity
-            android:name=".AdActivity"
+            android:name=".Post_for_home"
             android:exported="true"
             android:screenOrientation="portrait">
 
-
         </activity>
+
+
+        <activity
+            android:name=".AdActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".LoginSignup"
             android:exported="true"
-            android:screenOrientation="portrait">
-
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
+        </activity> <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3817807149121122~4312595899"/>
+            android:value="ca-app-pub-3817807149121122~4312595899" />
     </application>
 
 </manifest>

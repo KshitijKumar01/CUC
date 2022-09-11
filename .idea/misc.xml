@@ -5,11 +5,21 @@
       <map>
         <entry key="..\:/Users/abhis/OneDrive/Desktop/don't ask who we are/my Projects/CU Connect/CUC/app/src/main/res/layout/activity_login_signup.xml" value="0.14990942028985507" />
         <entry key="..\:/Users/abhis/OneDrive/Desktop/don't ask who we are/my Projects/CU Connect/CUC/app/src/main/res/layout/activity_main.xml" value="0.14990942028985507" />
+        <entry key="..\:/Users/abhis/OneDrive/Desktop/don't ask who we are/my Projects/CU Connect/CUC/app/src/main/res/layout/activity_post_for_home.xml" value="0.1" />
+        <entry key="..\:/Users/abhis/OneDrive/Desktop/don't ask who we are/my Projects/CU Connect/CUC/app/src/main/res/layout/activity_postforhome.xml" value="0.10729166666666666" />
+        <entry key="..\:/Users/abhis/OneDrive/Desktop/don't ask who we are/my Projects/CU Connect/CUC/app/src/main/res/layout/addpast.xml" value="0.23369565217391305" />
+        <entry key="..\:/Users/abhis/OneDrive/Desktop/don't ask who we are/my Projects/CU Connect/CUC/app/src/main/res/layout/addpost.xml" value="0.264" />
         <entry key="..\:/Users/abhis/OneDrive/Desktop/don't ask who we are/my Projects/CU Connect/CUC/app/src/main/res/layout/companion_layout.xml" value="0.4" />
+        <entry key="..\:/Users/abhis/OneDrive/Desktop/don't ask who we are/my Projects/CU Connect/CUC/app/src/main/res/layout/companion_posts.xml" value="0.15416666666666667" />
+        <entry key="..\:/Users/abhis/OneDrive/Desktop/don't ask who we are/my Projects/CU Connect/CUC/app/src/main/res/layout/content_postforhome.xml" value="0.10729166666666666" />
         <entry key="..\:/Users/abhis/OneDrive/Desktop/don't ask who we are/my Projects/CU Connect/CUC/app/src/main/res/layout/emailnotverified_dialog.xml" value="0.264" />
+        <entry key="..\:/Users/abhis/OneDrive/Desktop/don't ask who we are/my Projects/CU Connect/CUC/app/src/main/res/layout/fragment_companion.xml" value="0.15416666666666667" />
+        <entry key="..\:/Users/abhis/OneDrive/Desktop/don't ask who we are/my Projects/CU Connect/CUC/app/src/main/res/layout/fragment_companion_main.xml" value="0.15416666666666667" />
         <entry key="..\:/Users/abhis/OneDrive/Desktop/don't ask who we are/my Projects/CU Connect/CUC/app/src/main/res/layout/fragment_home.xml" value="0.14990942028985507" />
         <entry key="..\:/Users/abhis/OneDrive/Desktop/don't ask who we are/my Projects/CU Connect/CUC/app/src/main/res/layout/fragment_login.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/abhis/OneDrive/Desktop/don't ask who we are/my Projects/CU Connect/CUC/app/src/main/res/layout/fragment_post_home.xml" value="0.15416666666666667" />
         <entry key="..\:/Users/abhis/OneDrive/Desktop/don't ask who we are/my Projects/CU Connect/CUC/app/src/main/res/layout/fragment_profile.xml" value="0.15443840579710144" />
+        <entry key="..\:/Users/abhis/OneDrive/Desktop/don't ask who we are/my Projects/CU Connect/CUC/app/src/main/res/layout/fragment_roommate.xml" value="0.15416666666666667" />
         <entry key="..\:/Users/abhis/OneDrive/Desktop/don't ask who we are/my Projects/CU Connect/CUC/app/src/main/res/layout/fragment_search.xml" value="0.10739614994934144" />
         <entry key="..\:/Users/abhis/OneDrive/Desktop/don't ask who we are/my Projects/CU Connect/CUC/app/src/main/res/layout/fragment_setting.xml" value="0.176" />
         <entry key="..\:/Users/abhis/OneDrive/Desktop/don't ask who we are/my Projects/CU Connect/CUC/app/src/main/res/layout/fragment_sign_up.xml" value="0.14990942028985507" />
@@ -20,6 +30,8 @@
         <entry key="..\:/Users/abhis/OneDrive/Desktop/don't ask who we are/my Projects/CU Connect/CUC/app/src/main/res/layout/menu_header.xml" value="0.23369565217391305" />
         <entry key="..\:/Users/abhis/OneDrive/Desktop/don't ask who we are/my Projects/CU Connect/CUC/app/src/main/res/layout/myposts_profile.xml" value="0.14990942028985507" />
         <entry key="..\:/Users/abhis/OneDrive/Desktop/don't ask who we are/my Projects/CU Connect/CUC/app/src/main/res/layout/posts.xml" value="0.23369565217391305" />
+        <entry key="..\:/Users/abhis/OneDrive/Desktop/don't ask who we are/my Projects/CU Connect/CUC/app/src/main/res/layout/roomamtes.xml" value="0.15416666666666667" />
+        <entry key="..\:/Users/abhis/OneDrive/Desktop/don't ask who we are/my Projects/CU Connect/CUC/app/src/main/res/layout/roommates_posts.xml" value="0.11499493414387031" />
         <entry key="..\:/Users/abhis/OneDrive/Desktop/don't ask who we are/my Projects/CU Connect/CUC/app/src/main/res/layout/search_profile.xml" value="0.2" />
         <entry key="..\:/Users/abhis/OneDrive/Desktop/don't ask who we are/my Projects/CU Connect/CUC/app/src/main/res/layout/searchable_single_option_dialog.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/abhis/OneDrive/Desktop/don't ask who we are/my Projects/CUC/app/src/main/res/drawable/cardbg.xml" value="0.19" />
