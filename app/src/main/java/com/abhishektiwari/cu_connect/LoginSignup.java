@@ -2,7 +2,6 @@ package com.abhishektiwari.cu_connect;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Context;
@@ -12,8 +11,6 @@ import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.TranslateAnimation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,7 +25,9 @@ public class LoginSignup extends AppCompatActivity{
     TextView login,signup;
     LinearLayout view;
     boolean opened;
-    int i=0,k;
+    String steps;
+    int i=0;
+    FirebaseUser user;
 
     SharedPreferences sharedpreferences;
     stepsindicator s;
@@ -36,11 +35,12 @@ public class LoginSignup extends AppCompatActivity{
     @Override
     protected void onStart() {
         super.onStart();
+        user=FirebaseAuth.getInstance().getCurrentUser();
 
-        if(false)
+        if(user!=null)
         {
-            Intent intent=new Intent(LoginSignup.this,MainActivity.class);
-            LoginSignup.this.startActivity(intent);
+           // Intent intent=new Intent(LoginSignup.this,MainActivity.class);
+           // LoginSignup.this.startActivity(intent);
 
         }
     }
@@ -52,6 +52,9 @@ public class LoginSignup extends AppCompatActivity{
         sharedpreferences = getSharedPreferences("user_data", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putString("step", String.valueOf(4));
+        steps = sharedpreferences.getString("step", null);
+
+        getsteps();
         s=new stepsindicator();
         loginbutton=findViewById(R.id.loginbutton);
         signupbutton=findViewById(R.id.signupbutton);
@@ -102,25 +105,44 @@ public class LoginSignup extends AppCompatActivity{
         two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                s.setI(2);
-                indicatestep();
-                fragmentManager.beginTransaction().setCustomAnimations(
-                        // exit
-                        R.anim.slide_up,   // popEnter
-                        R.anim.slide_down  // popExit
-                ).replace(R.id.logsincon,new Steptwo()).commit();
+                getsteps();
+                if(Integer.valueOf(steps)>=2)
+                {
+                    s.setI(2);
+                    indicatestep();
+                    fragmentManager.beginTransaction().setCustomAnimations(
+                            // exit
+                            R.anim.slide_up,   // popEnter
+                            R.anim.slide_down  // popExit
+                    ).replace(R.id.logsincon,new Steptwo()).commit();
+                }
+                else
+                {
+                    Toast.makeText(LoginSignup.this, "complete previous steps first", Toast.LENGTH_SHORT).show();
+                }
+
+
             }
         });
         three.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                s.setI(3);
-                indicatestep();
-                fragmentManager.beginTransaction().setCustomAnimations(
-                        // exit
-                        R.anim.slide_up,   // popEnter
-                        R.anim.slide_down  // popExit
-                ).replace(R.id.logsincon,new stepthree()).commit();
+                getsteps();
+                if(Integer.valueOf(steps)>=3) {
+                    s.setI(3);
+                    indicatestep();
+                    fragmentManager.beginTransaction().setCustomAnimations(
+                            // exit
+                            R.anim.slide_up,   // popEnter
+                            R.anim.slide_down  // popExit
+                    ).replace(R.id.logsincon,new stepthree()).commit();
+                }
+                else
+                {
+                    Toast.makeText(LoginSignup.this, "complete previous steps first", Toast.LENGTH_SHORT).show();
+                }
+
+
 
             }
         });
@@ -128,13 +150,21 @@ public class LoginSignup extends AppCompatActivity{
         four.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                s.setI(4);
-                indicatestep();
-                fragmentManager.beginTransaction().setCustomAnimations(
-                        // exit
-                        R.anim.slide_up,   // popEnter
-                        R.anim.slide_down  // popExit
-                ).replace(R.id.logsincon,new stepfour()).commit();
+                getsteps();
+                if(Integer.valueOf(steps)>=3) {
+                    s.setI(4);
+                    indicatestep();
+                    fragmentManager.beginTransaction().setCustomAnimations(
+                            // exit
+                            R.anim.slide_up,   // popEnter
+                            R.anim.slide_down  // popExit
+                    ).replace(R.id.logsincon,new stepfour()).commit();
+                }
+
+                else
+                {
+                    Toast.makeText(LoginSignup.this, "complete previous steps first", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -193,6 +223,10 @@ public class LoginSignup extends AppCompatActivity{
         });
 
 
+    }
+
+    private void getsteps() {
+        steps = sharedpreferences.getString("step", null);
     }
 
     private void indicatestep() {
