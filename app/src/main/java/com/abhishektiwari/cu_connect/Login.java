@@ -13,7 +13,7 @@ import android.widget.Button;
 
 public class Login extends Fragment {
 
-    Button btnRegister;
+
     static int active;
 
     @Override

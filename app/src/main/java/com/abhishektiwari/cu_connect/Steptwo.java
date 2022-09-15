@@ -28,6 +28,7 @@ import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -40,21 +41,43 @@ public class Steptwo extends Fragment {
 
     stepsindicator s;
     EditText otp,phoneno;
+
     CardView views,verifyotpbtn;
     boolean opened;
-     Handler handler;
+
     int i=0;
     SharedPreferences sharedpreferences;
     AlertDialog.Builder alert;
      AlertDialog alertDialog;
     TextView otpstatus;
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
-    String Email,Password,uid,vid;
+    String Email;
+    String Password;
+    String uid;
+    String vid;
+    View verified_email;
+    Boolean verified=false;
     public Steptwo() {
 
     }
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        if(FirebaseAuth.getInstance().getCurrentUser().isEmailVerified())
+        {
+            Toast.makeText(getContext(),"Email verified",Toast.LENGTH_SHORT).show();
+            alertDialog.dismiss();
+            verified=true;
+
+        }
+        else
+        {
+
+        }
 
 
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -84,19 +107,26 @@ public class Steptwo extends Fragment {
         alertDialog = alert.create();
         alertDialog.setCanceledOnTouchOutside(false);
         alertDialog.setCancelable(false);
+        alertDialog.show();
+        verified_email=alertDialog.findViewById(R.id.recheck);
+        verified_email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loginnow(Email+"@cuchd.in",Password);
+            }
+        });
 
         otp=view.findViewById(R.id.otp);
         phoneno=view.findViewById(R.id.phoneno);
 
-        handler = new Handler();
+
+
 
         if(Email!=null && Password!=null)
         {
-            Toast.makeText(getContext(), "Email"+Email+Password, Toast.LENGTH_SHORT).show();
             loginnow(Email+"@cuchd.in",Password);
         }
         otpstatus=view.findViewById(R.id.otpstatustext);
-
         otpstatus.setText("Send Otp");
 
         i=0;
@@ -128,20 +158,33 @@ public class Steptwo extends Fragment {
                         FirebaseAuth.getInstance().signInWithCredential(credential).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                             @Override
                             public void onSuccess(AuthResult authResult) {
-                                Toast.makeText(getContext(), "User verified", Toast.LENGTH_SHORT).show();
-                                FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Phone no").setValue(phoneno.getText().toString());
-                                FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Whatsapp no").setValue("null");
-                                FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Phone Verified").setValue("Yes");
-                                FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("E-mail Verified").setValue("Yes");
-                                FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Phone auth Id").setValue(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                                FirebaseAuth.getInstance().getCurrentUser().delete();
+                                FirebaseAuth.getInstance().signInWithEmailAndPassword(Email,Password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                                    @Override
+                                    public void onSuccess(AuthResult authResult) {
+                                        Toast.makeText(getContext(), "User verified", Toast.LENGTH_SHORT).show();
+                                        FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Phone no").setValue(phoneno.getText().toString());
+                                        FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Whatsapp no").setValue("null");
+                                        FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Phone Verified").setValue("Yes");
+                                        FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("E-mail Verified").setValue("Yes");
+                                        FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Phone auth Id").setValue(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                                        FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Steps Completed").setValue(2);
+                                        FragmentManager fragmentManager=getActivity().getSupportFragmentManager();
+                                        s.setI(3);
+                                        fragmentManager.beginTransaction().setCustomAnimations(
+                                                // exit
+                                                R.anim.slide_up,   // popEnter
+                                                R.anim.slide_down  // popExit
+                                        ).replace(R.id.logsincon,new stepthree()).commit();
 
-                                FragmentManager fragmentManager=getActivity().getSupportFragmentManager();
-                                s.setI(3);
-                                fragmentManager.beginTransaction().setCustomAnimations(
-                                        // exit
-                                        R.anim.slide_up,   // popEnter
-                                        R.anim.slide_down  // popExit
-                                ).replace(R.id.logsincon,new stepthree()).commit();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+
+                                    }
+                                });
+
 
                             }
                         }).addOnFailureListener(new OnFailureListener() {
@@ -158,12 +201,6 @@ public class Steptwo extends Fragment {
 
             }
         });
-
-
-
-
-
-
         return  view;
     }
 
@@ -172,21 +209,6 @@ public class Steptwo extends Fragment {
         firebaseAuth.signInWithEmailAndPassword(s,password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        if(FirebaseAuth.getInstance().getCurrentUser().isEmailVerified())
-                        {
-                            alertDialog.dismiss();
-                        }
-                        else
-                        {
-                            alertDialog.show();
-                        }
-                        handler.postDelayed(this, 1000);
-                    }
-
-                });
 
 
 

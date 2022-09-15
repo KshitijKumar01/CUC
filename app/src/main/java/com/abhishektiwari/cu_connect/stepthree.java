@@ -73,7 +73,7 @@ public class stepthree extends Fragment  {
 
         sharedpreferences = getContext().getSharedPreferences("user_data", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putString("step", String.valueOf(4));
+        editor.putString("step", String.valueOf(3));
         uid=sharedpreferences.getString("Uid",null);
         // Spinner Drop down elements
         List<String> branchesa = new ArrayList<String>();
@@ -279,6 +279,8 @@ public class stepthree extends Fragment  {
                 {
                     FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Semester").setValue(semestert);
                     FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Branch").setValue(brancht);
+                    FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Steps Completed").setValue(3);
+
                     for (int i = 0; i < checkedItems.length; i++) {
                         if (checkedItems[i]) {
 
