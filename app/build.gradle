@@ -45,11 +45,10 @@ dependencies {
     implementation "com.airbnb.android:lottie:$lottieVersion"
     implementation 'androidx.browser:browser:1.4.0'
 
-
-
+    implementation 'com.github.ahmmedrejowan.CuteToast:CuteToast:1.2'
     implementation 'com.squareup.picasso:picasso:2.8'
 
-    implementation 'com.google.firebase:firebase-appcheck-safetynet:16.0.1'
+    implementation 'com.google.firebase:firebase-appcheck-safetynet:16.0.2'
     implementation 'com.google.android.gms:play-services-safetynet:18.0.1'
 
     implementation 'androidx.appcompat:appcompat:1.5.1'

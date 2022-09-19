@@ -1,11 +1,14 @@
 package com.abhishektiwari.cu_connect;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +24,7 @@ public class stepfour extends Fragment {
     stepsindicator s;
     String uid;
     String Email,Password;
+    int i=0;
     public stepfour() {
         // Required empty public constructor
     }
@@ -39,7 +43,25 @@ public class stepfour extends Fragment {
         View view= inflater.inflate(R.layout.fragment_stepfour, container, false);
         sharedpreferences = getContext().getSharedPreferences("user_data", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
+        final Handler handler = new Handler();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+
+                if(i==1)
+                {
+                    Intent intent=new Intent(getActivity(),MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+
+                }
+                i++;
+                handler.postDelayed(this, 5000);
+
+            }
+        });
         editor.putString("step", String.valueOf(4));
+        editor.putString("logged in", "yes");
         uid=sharedpreferences.getString("Uid",null);
         Email=sharedpreferences.getString("Email",null);
         Password=sharedpreferences.getString("Password",null);
