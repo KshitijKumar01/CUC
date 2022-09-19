@@ -11,7 +11,7 @@
         android:textColor="@color/red"
         android:layout_height="wrap_content"
         android:text="Your Email id is not verified !"
-        android:textSize="22sp"
+        android:textSize="18sp"
         android:textAlignment="center" />
     <View
         android:layout_width="match_parent"
@@ -25,14 +25,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="- Check Spam/junk folder of your CU-MAIL if not found in main inbox."
-        android:textSize="15sp"
+        android:textSize="13sp"
         android:layout_marginBottom="5sp"
         android:textAlignment="viewStart" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="- Click on the verification link"
-        android:textSize="15sp"
+        android:textSize="13sp"
         android:layout_marginBottom="5sp"
         android:textAlignment="viewStart" />
 
@@ -41,14 +41,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="- get yourself verified"
-        android:textSize="15sp"
+        android:textSize="13sp"
         android:layout_marginBottom="5sp"
         android:textAlignment="viewStart" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="- You can access this page only after verification"
-        android:textSize="15sp"
+        android:textSize="13sp"
         android:layout_marginBottom="5sp"
         android:textAlignment="viewStart" />
     <View
@@ -63,7 +63,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="- Not got Verification Email."
-        android:textSize="18sp"
+        android:textSize="15sp"
         android:textColor="@color/redmain"
         android:layout_marginBottom="10sp"
         android:textAlignment="viewStart" />
@@ -71,12 +71,14 @@
         android:layout_width="match_parent"
         android:backgroundTint="@color/theme"
         android:layout_height="35sp"
-        app:cardCornerRadius="10sp"
+        app:cardCornerRadius="3sp"
         >
         <TextView
             android:layout_width="match_parent"
+            android:id="@+id/resendmail"
             android:text="Resend Mail"
-            android:textSize="22sp"
+            android:textSize="18sp"
+            android:gravity="center"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textAlignment="center"
@@ -89,7 +91,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="- Entered Wrong UID ??."
-        android:textSize="18sp"
+        android:textSize="15sp"
+        android:layout_marginTop="5sp"
         android:layout_marginBottom="10sp"
         android:textColor="@color/redmain"
 
@@ -98,12 +101,14 @@
         android:layout_width="match_parent"
         android:backgroundTint="@color/theme"
         android:layout_height="35sp"
-        app:cardCornerRadius="10sp"
+        app:cardCornerRadius="3sp"
         >
         <TextView
             android:layout_width="match_parent"
             android:text="Back to Sign Up"
-            android:textSize="22sp"
+            android:id="@+id/backtosignup"
+            android:textSize="18sp"
+            android:gravity="center"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textAlignment="center"
@@ -116,14 +121,15 @@
         android:layout_width="match_parent"
         android:backgroundTint="@color/red"
         android:layout_height="35sp"
-        app:cardCornerRadius="10sp"
+        app:cardCornerRadius="3sp"
         android:layout_marginTop="10sp"
         >
         <TextView
             android:id="@+id/recheck"
             android:layout_width="match_parent"
             android:text="Recheck if verified "
-            android:textSize="22sp"
+            android:textSize="18sp"
+            android:gravity="center"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textAlignment="center"

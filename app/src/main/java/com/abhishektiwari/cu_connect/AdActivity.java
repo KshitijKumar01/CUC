@@ -33,17 +33,26 @@ public class AdActivity extends AppCompatActivity {
 
     private InterstitialAd mInterstitialAd;
     ConstraintLayout splash;
-    String uid,steps;
     public Integer K=0;
+    public  static  Integer steps;
     FirebaseUser user;
     Intent intentmain,intentlogin;
-    public Integer i=0;
-    SharedPreferences sharedpreferences;
+    private  Integer i=0;
+    ToastClass t=new ToastClass(this);
+
+
+
 
 
     @Override
     protected void onStart() {
         super.onStart();
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
     @Override
@@ -55,9 +64,9 @@ public class AdActivity extends AppCompatActivity {
             public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
         });
-        sharedpreferences = getSharedPreferences("user_data", Context.MODE_PRIVATE);
-        steps = sharedpreferences.getString("step", null);
-        Toast.makeText(this, steps, Toast.LENGTH_SHORT).show();
+
+
+
 
 
         intentlogin = new Intent(AdActivity.this, LoginSignup.class);
@@ -67,73 +76,93 @@ public class AdActivity extends AppCompatActivity {
         splash.setVisibility(View.VISIBLE);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
-        if (i == 0) {
-              try {
-                if (user != null) {
+        if (i==0) {
+            checkstep();
+            i++;
+        }
+        else
+        {
+            K=1;
+            setAds();
+        }
+    }
 
-                    if (Integer.parseInt(steps) >= 3) {
-
-                        K = 2;
-                        setAds();
-
-
-                    } else {
-                        Toast.makeText(this, "in the 3rd loop", Toast.LENGTH_SHORT).show();
-
-                        K = 1;
-                        if(K!=null)
+    private void checkstep() {
+        try {
+            if (user != null) {
+                FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        steps=snapshot.child("users").child(user.getUid()).child("Steps Completed").getValue(Integer.class);
+                        if(steps!=null)
                         {
-                            setAds();
+                            try
+                            {
+                                if (steps >= 3) {
+
+                                    K = 2;
+                                    setAds();
+
+
+                                } else {
+
+                                    K = 1;
+                                    setAds();
+
+
+                                }
+
+                            }
+                            catch (Exception e)
+                            {
+                                t.errortoast(e.getMessage());
+
+                                K = 1;
+                                setAds();
+                            }
                         }
                         else
                         {
-                            Toast.makeText(this, "K is null", Toast.LENGTH_SHORT).show();
+                            K = 1;
+                            setAds();
                         }
 
+
+
+
                     }
 
-                  }
-
-                else
-                {
-
-                    K=1;
-                    setAds();
-                }
-                }
-                catch(Exception e)
-                {
-                    K=1;
-                    if(K!=null)
-                    {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        t.errortoast(error.getMessage());
+                        K = 1;
                         setAds();
                     }
-                    else
-                    {
-                        Toast.makeText(this, "K is null", Toast.LENGTH_SHORT).show();
-                    }
-
-                }
-
-
-
-                i++;
+                });
             }
-        else
+            else
+            {
+               t.warntoast("No user found");
+                K=1;
+                setAds();
+            }
+        }
+        catch(Exception e)
         {
-            Toast.makeText(this, "in the loop", Toast.LENGTH_SHORT).show();
-
+            t.errortoast(e.getMessage());
             K=1;
             setAds();
 
-        }
+
+
 
         }
+
+    }
 
 
     public void setAds(){
         AdRequest adRequest = new AdRequest.Builder().build();
-
         InterstitialAd.load(this,"ca-app-pub-3940256099942544/1033173712", adRequest,
                 new InterstitialAdLoadCallback() {
                     @Override
@@ -155,6 +184,7 @@ public class AdActivity extends AppCompatActivity {
                                 // Set the ad reference to null so you don't show the ad a second time.
                                 mInterstitialAd = null;
                                 changeActivity();
+
                             }
 
                             @Override
@@ -203,17 +233,21 @@ public class AdActivity extends AppCompatActivity {
         mInterstitialAd = null;
         if(K==2)
         {
+            intentmain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intentmain);
-
+            this.finishActivity(0);
         }
         else if(K==1)
         {
+            intentlogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intentlogin);
+            this.finish();
         }
         else
         {
+            intentlogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP );
             startActivity(intentlogin);
-
+            this.finish();
         }
     }
 }

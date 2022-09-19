@@ -29,6 +29,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
@@ -43,8 +44,9 @@ public class stepthree extends Fragment  {
     Dialog dialog;
     stepsindicator s;
     CardView next;
-
+    LottieAnimationView lottieAnimationView;
     int i=0;
+    ToastClass t;
     String uid;
 
     String semestert,brancht;
@@ -66,8 +68,11 @@ public class stepthree extends Fragment  {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_stepthree, container, false);
         branches=view.findViewById(R.id.branch);
+        t=new ToastClass(getContext());
         semester=view.findViewById(R.id.semester);
         intrests=view.findViewById(R.id.intrests);
+        lottieAnimationView=view.findViewById(R.id.loadinganimation);
+        lottieAnimationView.setVisibility(View.INVISIBLE);
         s=new stepsindicator();
         s.setI(3);
 
@@ -272,11 +277,16 @@ public class stepthree extends Fragment  {
         });
 
         next=view.findViewById(R.id.next);
+        next.setVisibility(View.VISIBLE);
+
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(i==1 && !brancht.isEmpty() && !semestert.isEmpty())
                 {
+                    lottieAnimationView.setVisibility(View.INVISIBLE);
+                    next.setVisibility(View.VISIBLE);
+
                     FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Semester").setValue(semestert);
                     FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Branch").setValue(brancht);
                     FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Steps Completed").setValue(3);
@@ -291,13 +301,27 @@ public class stepthree extends Fragment  {
                     FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Intrests").child(String.valueOf(checkedItems.length+1)).setValue("others");
 
 
-                    FragmentManager fragmentManager=getActivity().getSupportFragmentManager();
-                    s.setI(4);
-                    fragmentManager.beginTransaction().setCustomAnimations(
-                            // exit
-                            R.anim.slide_up,   // popEnter
-                            R.anim.slide_down  // popExit
-                    ).replace(R.id.logsincon,new stepfour()).commit();
+                    try {
+                        FragmentManager fragmentManager=getActivity().getSupportFragmentManager();
+                        s.setI(4);
+                        fragmentManager.beginTransaction().setCustomAnimations(
+                                // exit
+                                R.anim.slide_up,   // popEnter
+                                R.anim.slide_down  // popExit
+                        ).replace(R.id.logsincon,new stepfour()).commit();
+
+                    }catch (Exception e)
+                    {
+
+                    }
+
+                }
+                else
+                {
+                    lottieAnimationView.setVisibility(View.INVISIBLE);
+                    next.setVisibility(View.VISIBLE);
+                    t.errortoast("All fields are compulsory");
+
                 }
 
             }

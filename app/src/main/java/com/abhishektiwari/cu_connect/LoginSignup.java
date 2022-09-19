@@ -1,5 +1,6 @@
 package com.abhishektiwari.cu_connect;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentManager;
@@ -18,6 +19,10 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginSignup extends AppCompatActivity{
 
@@ -25,34 +30,26 @@ public class LoginSignup extends AppCompatActivity{
     TextView login,signup;
     LinearLayout view;
     boolean opened;
-    String steps;
+    Integer steps=1;
     int i=0;
     FirebaseUser user;
-
-    SharedPreferences sharedpreferences;
     stepsindicator s;
+    ToastClass t;
 
     @Override
     protected void onStart() {
         super.onStart();
         user=FirebaseAuth.getInstance().getCurrentUser();
 
-        if(user!=null)
-        {
-           // Intent intent=new Intent(LoginSignup.this,MainActivity.class);
-           // LoginSignup.this.startActivity(intent);
-
-        }
+        t=new ToastClass(this);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_signup);
-        sharedpreferences = getSharedPreferences("user_data", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putString("step", String.valueOf(4));
-        steps = sharedpreferences.getString("step", null);
+
+
 
         getsteps();
         s=new stepsindicator();
@@ -84,7 +81,7 @@ public class LoginSignup extends AppCompatActivity{
 
         FragmentManager fragmentManager=getSupportFragmentManager();
         fragmentManager.beginTransaction().add(R.id.logsincon,new Login()).commit();
-        loginbutton.setBackgroundTintList(  ColorStateList.valueOf(getResources().getColor(R.color.red)));
+        loginbutton.setBackgroundTintList(  ColorStateList.valueOf(getResources().getColor(R.color.yellow)));
         login.setTextColor(getResources().getColor(R.color.white));
         signup.setTextColor(getResources().getColor(R.color.black));
         i=0;
@@ -92,79 +89,79 @@ public class LoginSignup extends AppCompatActivity{
         one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                s.setI(1);
-                indicatestep();
-                fragmentManager.beginTransaction().setCustomAnimations(
-                        // exit
-                        R.anim.slide_up,   // popEnter
-                        R.anim.slide_down  // popExit
-                ).replace(R.id.logsincon,new Sign_up()).commit();
+                try{
+                    s.setI(1);
+                    indicatestep();
+                    fragmentManager.beginTransaction().setCustomAnimations(
+                            // exit
+                            R.anim.slide_up,   // popEnter
+                            R.anim.slide_down  // popExit
+                    ).replace(R.id.logsincon,new Sign_up()).commit();
+                }catch(Exception e)
+                {}
             }
         });
         two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getsteps();
-                if(Integer.valueOf(steps)>=2)
-                {
-                    s.setI(2);
-                    indicatestep();
-                    fragmentManager.beginTransaction().setCustomAnimations(
-                            // exit
-                            R.anim.slide_up,   // popEnter
-                            R.anim.slide_down  // popExit
-                    ).replace(R.id.logsincon,new Steptwo()).commit();
-                }
-                else
-                {
-                    Toast.makeText(LoginSignup.this, "complete previous steps first", Toast.LENGTH_SHORT).show();
-                }
-
-
+                try{
+                    if(steps>=1)
+                    {
+                        s.setI(2);
+                        indicatestep();
+                        fragmentManager.beginTransaction().setCustomAnimations(
+                                // exit
+                                R.anim.slide_up,   // popEnter
+                                R.anim.slide_down  // popExit
+                        ).replace(R.id.logsincon,new Steptwo()).commit();
+                    }
+                    else
+                    {
+                        t.errortoast("complete previous steps first");                    }
+                }catch(Exception e)
+                {}
             }
         });
         three.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getsteps();
-                if(Integer.valueOf(steps)>=3) {
-                    s.setI(3);
-                    indicatestep();
-                    fragmentManager.beginTransaction().setCustomAnimations(
-                            // exit
-                            R.anim.slide_up,   // popEnter
-                            R.anim.slide_down  // popExit
-                    ).replace(R.id.logsincon,new stepthree()).commit();
-                }
-                else
-                {
-                    Toast.makeText(LoginSignup.this, "complete previous steps first", Toast.LENGTH_SHORT).show();
-                }
-
-
-
+                try {
+                    if(steps>=2){
+                        s.setI(3);
+                        indicatestep();
+                        fragmentManager.beginTransaction().setCustomAnimations(
+                                // exit
+                                R.anim.slide_up,   // popEnter
+                                R.anim.slide_down  // popExit
+                        ).replace(R.id.logsincon,new stepthree()).commit();
+                    }
+                    else
+                    {
+                        t.errortoast("complete previous steps first");
+                    }
+                }catch (Exception e)
+                {}
             }
         });
 
         four.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getsteps();
-                if(Integer.valueOf(steps)>=3) {
-                    s.setI(4);
-                    indicatestep();
-                    fragmentManager.beginTransaction().setCustomAnimations(
-                            // exit
-                            R.anim.slide_up,   // popEnter
-                            R.anim.slide_down  // popExit
-                    ).replace(R.id.logsincon,new stepfour()).commit();
-                }
-
-                else
-                {
-                    Toast.makeText(LoginSignup.this, "complete previous steps first", Toast.LENGTH_SHORT).show();
-                }
+                try {
+                    if(steps>=3) {
+                        s.setI(4);
+                        indicatestep();
+                        fragmentManager.beginTransaction().setCustomAnimations(
+                                // exit
+                                R.anim.slide_up,   // popEnter
+                                R.anim.slide_down  // popExit
+                        ).replace(R.id.logsincon,new stepfour()).commit();
+                    }
+                    else
+                    {
+                        t.errortoast("complete previous steps first");                    }
+                }catch (Exception e)
+                {}
             }
         });
 
@@ -181,7 +178,7 @@ public class LoginSignup extends AppCompatActivity{
                 signupbutton.setClickable(true);
                 login.setTextColor(getResources().getColor(R.color.white));
                 signup.setTextColor(getResources().getColor(R.color.black));
-                loginbutton.setBackgroundTintList(  ColorStateList.valueOf(getResources().getColor(R.color.red)));
+                loginbutton.setBackgroundTintList(  ColorStateList.valueOf(getResources().getColor(R.color.yellow)));
                 signupbutton.setBackgroundTintList(  ColorStateList.valueOf(getResources().getColor(R.color.white)));
                 fragmentManager.beginTransaction().setCustomAnimations(
                         // exit
@@ -210,12 +207,15 @@ public class LoginSignup extends AppCompatActivity{
                 login.setTextColor(getResources().getColor(R.color.black));
                 signup.setTextColor(getResources().getColor(R.color.white));
                 loginbutton.setBackgroundTintList(  ColorStateList.valueOf(getResources().getColor(R.color.white)));
-                signupbutton.setBackgroundTintList(  ColorStateList.valueOf(getResources().getColor(R.color.red)));
-                fragmentManager.beginTransaction().setCustomAnimations(
-                        // exit
-                        R.anim.slide_up,   // popEnter
-                        R.anim.slide_down  // popExit
-                ).replace(R.id.logsincon,new Sign_up()).commit();
+                signupbutton.setBackgroundTintList(  ColorStateList.valueOf(getResources().getColor(R.color.yellow)));
+                try {
+                    fragmentManager.beginTransaction().setCustomAnimations(
+                            // exit
+                            R.anim.slide_up,   // popEnter
+                            R.anim.slide_down  // popExit
+                    ).replace(R.id.logsincon,new Sign_up()).commit();
+                }catch (Exception e){}
+
             }
 
 
@@ -226,7 +226,25 @@ public class LoginSignup extends AppCompatActivity{
     }
 
     private void getsteps() {
-        steps = sharedpreferences.getString("step", null);
+        if(user!=null)
+        {
+            FirebaseDatabase.getInstance().getReference().addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    steps=snapshot.child("users").child(user.getUid()).child("Steps Completed").getValue(Integer.class);
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    steps=1;
+
+                }
+            });
+
+        }
+        else
+        {
+            steps=1;
+        }
     }
 
     private void indicatestep() {
@@ -273,6 +291,7 @@ public class LoginSignup extends AppCompatActivity{
     }
 
     private void openmenu() {
+        s.setI(1);
         if(!opened){
             view.setVisibility(View.VISIBLE);
             TranslateAnimation animate = new TranslateAnimation(
