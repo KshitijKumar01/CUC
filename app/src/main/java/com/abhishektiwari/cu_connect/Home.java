@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
@@ -29,7 +30,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.github.dhaval2404.imagepicker.ImagePicker;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,10 +48,9 @@ public class Home extends Fragment {
     RecyclerView posts_recycler, top_view_recycler;
     home_posts_recycler posts_adapter;
     home_category_adapter category_adapter;
-
-    Dialog dialog;
-
     ImageView addpost;
+    String uid;
+    LottieAnimationView lottieAnimationView;
 
     public Home() {
         // Required empty public constructor
@@ -64,10 +70,15 @@ public class Home extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         posts_recycler = view.findViewById(R.id.postsrecycler);
         posts_recycler.setHasFixedSize(true);
+        uid= FirebaseAuth.getInstance().getUid();
         posts_recycler.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
         posts_adapter = new home_posts_recycler(getContext());
         posts_recycler.setAdapter(posts_adapter);
         addpost = view.findViewById(R.id.addpost);
+
+        lottieAnimationView=view.findViewById(R.id.loadinganimation);
+        lottieAnimationView.setVisibility(View.VISIBLE);
+
         addpost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,12 +89,28 @@ public class Home extends Fragment {
 
 
         ArrayList<String> arr = new ArrayList<>();
-        arr.add("home");
-        arr.add("Technologu");
-        arr.add("Sports");
-        arr.add("Btech");
-        arr.add("Cse");
-        arr.add("Others");
+        FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.child("users").child(uid).child("Intrests").getChildren()) {
+
+                    arr.add(dataSnapshot.getValue(String.class));
+                }
+
+                lottieAnimationView.setVisibility(View.INVISIBLE);
+                category_adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+                arr.add("Error happened");
+                category_adapter.notifyDataSetChanged();
+                lottieAnimationView.setVisibility(View.INVISIBLE);
+
+            }
+        });
 
         top_view_recycler = view.findViewById(R.id.categoryRecycler);
         top_view_recycler.setHasFixedSize(true);

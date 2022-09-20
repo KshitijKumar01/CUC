@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:paddingTop="10sp"
+
+    android:backgroundTint="@color/transparent"
+    android:background="@color/transparent"
+    android:gravity="center"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        app:cardCornerRadius="5sp"
+        android:layout_height="wrap_content">
+        <LinearLayout
+
+            android:backgroundTint="@color/grey"
+            android:background="@color/gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <androidx.cardview.widget.CardView android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5sp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="5sp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@color/yellow"
+                android:foregroundGravity="center"
+                app:cardCornerRadius="5sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1"
+                app:layout_constraintWidth_percent="01"
+                >
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1sp"
+                    app:cardCornerRadius="5sp">
+                    <ImageView
+                        android:src="@mipmap/link2"
+                        android:padding="3sp"
+                        android:layout_width="40sp"
+
+                        android:layout_height="match_parent"
+                        ></ImageView>
+
+                    <EditText
+                        android:id="@+id/linktext"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="30sp"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:hint="Paste link here"
+                        android:padding="0dp"
+                        android:paddingLeft="0sp"
+
+                        android:singleLine="true"
+                        android:textAlignment="viewStart"
+                        android:textColorHint="@color/black"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+
+
+                        tools:ignore="RtlCompat">
+
+                    </EditText>
+                </androidx.cardview.widget.CardView>
+
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:layout_marginTop="20sp"
+                android:layout_marginBottom="10sp"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                android:backgroundTint="@color/redmain"
+                app:cardCornerRadius="3sp"
+                >
+                <TextView
+                    android:id="@+id/addlink_bth"
+                    android:layout_width="match_parent"
+                    android:textSize="25sp"
+                    android:textColor="@color/white"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:text="Add Link"
+
+                    android:layout_height="match_parent">
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>
+
