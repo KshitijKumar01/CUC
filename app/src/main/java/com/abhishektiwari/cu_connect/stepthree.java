@@ -290,6 +290,7 @@ public class stepthree extends Fragment  {
                     FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Semester").setValue(semestert);
                     FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Branch").setValue(brancht);
                     FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Steps Completed").setValue(3);
+                    FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Total Posts").setValue(0);
 
                     for (int i = 0; i < checkedItems.length; i++) {
                         if (checkedItems[i]) {

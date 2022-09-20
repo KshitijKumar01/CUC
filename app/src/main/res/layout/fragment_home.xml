@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context=".Home">
 
+
     <!-- TODO: Update blank fragment layout -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoryRecycler"
@@ -54,4 +55,22 @@
         </ImageView>
 
     </androidx.cardview.widget.CardView>
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loadinganimation"
+        android:layout_marginTop="0sp"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
+        app:lottie_rawRes="@raw/loading2"
+
+        app:layout_constraintHorizontal_bias="0.009"
+        app:layout_constraintVertical_bias="0.01"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true"
+        app:lottie_speed="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </com.airbnb.lottie.LottieAnimationView>
 </androidx.constraintlayout.widget.ConstraintLayout>

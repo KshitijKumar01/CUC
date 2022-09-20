@@ -120,8 +120,8 @@
                     android:enabled="false"
                     android:gravity="center"
                     android:minWidth="0dp"
-                    android:paddingLeft="10sp"
-                    android:paddingRight="10sp"
+                    android:paddingLeft="20sp"
+                    android:paddingRight="20sp"
                     android:text="POST" />
 
             </LinearLayout>
@@ -150,13 +150,18 @@
                     android:layout_height="match_parent"
                     android:layout_margin="1sp"
                     app:cardCornerRadius="5sp">
+                    <ImageView
+                        android:src="@mipmap/category"
+                        android:layout_width="40sp"
+                        android:layout_height="match_parent"
+                        ></ImageView>
 
                     <TextView
                         android:id="@+id/category_post"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="10sp"
+                        android:layout_marginLeft="30sp"
                         android:background="@color/white"
                         android:gravity="center"
                         android:hint="Choose Category"
@@ -179,8 +184,81 @@
             </androidx.cardview.widget.CardView>
 
             <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+                <androidx.cardview.widget.CardView
+
+                    android:id="@+id/linkview"
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5sp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="5sp"
+                    android:layout_marginBottom="8dp"
+                    android:backgroundTint="@color/yellow"
+                    android:foregroundGravity="center"
+                    app:cardCornerRadius="5sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1"
+                    app:layout_constraintWidth_percent="01"
+                    >
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1sp"
+                        app:cardCornerRadius="5sp">
+                        <ImageView
+                            android:src="@mipmap/link2"
+                            android:padding="3sp"
+                            android:layout_width="40sp"
+
+                            android:layout_height="match_parent"
+                            ></ImageView>
+
+                        <TextView
+                            android:id="@+id/link"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="40sp"
+                            android:background="@color/white"
+                            android:gravity="center"
+                            android:hint="link"
+                            android:padding="0dp"
+                            android:layout_marginRight="40sp"
+                            android:paddingLeft="0sp"
+
+                            android:singleLine="true"
+                            android:textAlignment="viewStart"
+                            android:textColorHint="@color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+
+
+                            tools:ignore="RtlCompat">
+
+                        </TextView>
+                        <ImageView
+                            android:id="@+id/cancel_bth"
+                            android:src="@mipmap/cancel"
+                            android:padding="3sp"
+                            android:layout_width="40sp"
+
+                            android:layout_gravity="end"
+                            android:layout_height="match_parent"
+                            ></ImageView>
+                    </androidx.cardview.widget.CardView>
+
+
+                </androidx.cardview.widget.CardView>
+
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -216,9 +294,9 @@
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:layout_marginLeft="10sp"
-                            android:layout_marginTop="8sp"
+                            android:layout_marginTop="7sp"
                             android:layout_marginRight="10sp"
-                            android:layout_marginBottom="8sp"
+                            android:layout_marginBottom="7sp"
                             android:background="@color/white"
                             android:gravity="center"
                             android:hint="Type Something"
@@ -265,7 +343,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="300sp"
                     android:layout_margin="1sp"
                     app:cardCornerRadius="5sp">
 
@@ -273,7 +351,8 @@
                         android:id="@+id/imagepickerimage"
                         android:layout_width="match_parent"
 
-                        android:layout_height="300sp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="50sp"
                         android:layout_gravity="center"
                         android:src="@mipmap/addimagebg">
 
