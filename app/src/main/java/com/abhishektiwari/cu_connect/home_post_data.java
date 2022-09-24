@@ -1,7 +1,7 @@
 package com.abhishektiwari.cu_connect;
 
 public class home_post_data {
-    String imageurl,post_text,post_link;
+    String imageurl,post_text,post_link,date,uid;
     Integer like,saves;
 
 
@@ -10,10 +10,12 @@ public class home_post_data {
     public home_post_data() {
 
     }
-    public home_post_data(String imageurl, String post_text, String post_link,Integer like, Integer saves) {
+    public home_post_data(String imageurl, String post_text, String post_link,String date,String uid,Integer like, Integer saves) {
         this.imageurl = imageurl;
         this.post_text = post_text;
         this.post_link = post_link;
+        this.date=date;
+        this.uid=uid;
         this.like = like;
         this.saves = saves;
     }
@@ -56,5 +58,21 @@ public class home_post_data {
 
     public void setSaves(Integer saves) {
         this.saves = saves;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

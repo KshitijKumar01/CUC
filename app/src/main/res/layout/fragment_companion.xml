@@ -4,16 +4,20 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/companions_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.663">
 
     </androidx.recyclerview.widget.RecyclerView>
+
     <androidx.cardview.widget.CardView
         android:layout_width="50sp"
         android:layout_height="50sp"
@@ -34,6 +38,33 @@
             android:layout_height="match_parent">
 
         </ImageView>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="60sp"
+        android:layout_height="60sp"
+        app:layout_constraintVertical_bias="0.85"
+        app:layout_constraintHorizontal_bias="0.95"
+        android:backgroundTint="@color/transparent"
+        app:cardCornerRadius="10sp"
+        app:cardElevation="0sp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:layout_margin="0sp"
+            android:padding="2sp"
+            android:id="@+id/btn_search"
+            android:layout_width="match_parent"
+            android:src="@mipmap/searchbtn"
+            android:layout_height="match_parent">
+
+        </ImageView>
+
 
     </androidx.cardview.widget.CardView>
 

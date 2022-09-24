@@ -1,7 +1,7 @@
 package com.abhishektiwari.cu_connect;
 
 public class home_post_data_for_profile {
-    String imageurl,post_text,post_link;
+    String imageurl,post_text,post_link,token;
 
 
 
@@ -9,10 +9,11 @@ public class home_post_data_for_profile {
     public home_post_data_for_profile() {
 
     }
-    public home_post_data_for_profile(String imageurl, String post_text, String post_link) {
+    public home_post_data_for_profile(String imageurl, String post_text, String post_link,String token) {
         this.imageurl = imageurl;
         this.post_text = post_text;
         this.post_link = post_link;
+        this.token=token;
 
     }
 
@@ -38,5 +39,13 @@ public class home_post_data_for_profile {
 
     public void setPost_link(String post_link) {
         this.post_link = post_link;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

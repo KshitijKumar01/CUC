@@ -45,6 +45,9 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/postby"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -53,35 +56,43 @@
                     android:textColor="@android:color/black" />
 
                 <TextView
+
+                    android:id="@+id/date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5sp"
                     android:gravity="center_vertical"
                     android:text="June 1, 2015"
+                    android:textStyle="bold"
                     android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                    android:textColor="@color/gray" />
+                    android:textColor="@color/red" />
 
             </LinearLayout>
 
         </LinearLayout>
 
         <TextView
+            android:id="@+id/posttext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10sp"
             android:layout_marginRight="10sp"
+            android:textSize="13sp"
+
             android:layout_marginBottom="10sp"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam efficitur ipsum in placerat molestie.  Fusce quis mauris a enim sollicitudin"
-            android:textColor="@color/gray" />
+            android:textColor="@color/black" />
 
         <ImageView
+            android:id="@+id/postimg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="300sp"
             android:background="@color/white"
             android:layout_gravity="center"
             android:foregroundGravity="center"
-            android:scaleType="fitStart"
-            android:src="@mipmap/connecttous"/>
+            android:scaleType="fitXY"
+     />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -90,6 +101,7 @@
 
             <ImageButton
 
+                android:id="@+id/postfollow"
                 android:layout_width="25sp"
                 android:layout_height="25dp"
                 android:layout_gravity="center"
@@ -113,6 +125,7 @@
                 android:layout_weight="1" />
 
             <ImageButton
+                android:id="@+id/postlike"
                 android:layout_width="25sp"
                 android:layout_height="25sp"
                 android:layout_gravity="center"
@@ -121,6 +134,7 @@
                 app:tint="@color/gray" />
 
             <TextView
+                android:id="@+id/postliketext"
                 android:layout_width="wrap_content"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_marginRight="20sp"

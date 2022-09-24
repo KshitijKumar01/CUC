@@ -48,8 +48,10 @@ public class Home extends Fragment {
     RecyclerView posts_recycler, top_view_recycler;
     home_posts_recycler posts_adapter;
     home_category_adapter category_adapter;
+    home_post_data home_post_data;
     ImageView addpost;
     String uid;
+    String first;
     LottieAnimationView lottieAnimationView;
 
     public Home() {
@@ -68,16 +70,22 @@ public class Home extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        ArrayList<String> arr = new ArrayList<>();
+        ArrayList<home_post_data> arrhome=new ArrayList<>();
         posts_recycler = view.findViewById(R.id.postsrecycler);
         posts_recycler.setHasFixedSize(true);
         uid= FirebaseAuth.getInstance().getUid();
         posts_recycler.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
-        posts_adapter = new home_posts_recycler(getContext());
+        posts_adapter = new home_posts_recycler(getContext(),arrhome);
         posts_recycler.setAdapter(posts_adapter);
         addpost = view.findViewById(R.id.addpost);
-
         lottieAnimationView=view.findViewById(R.id.loadinganimation);
         lottieAnimationView.setVisibility(View.VISIBLE);
+        top_view_recycler = view.findViewById(R.id.categoryRecycler);
+        top_view_recycler.setHasFixedSize(true);
+        top_view_recycler.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
+        category_adapter = new home_category_adapter(getContext(), arr);
+        top_view_recycler.setAdapter(category_adapter);
 
         addpost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,19 +95,24 @@ public class Home extends Fragment {
             }
         });
 
-
-        ArrayList<String> arr = new ArrayList<>();
         FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.child("users").child(uid).child("Intrests").getChildren()) {
+                try {
+                    for (DataSnapshot dataSnapshot : snapshot.child("users").child(uid).child("Intrests").getChildren()) {
 
-                    arr.add(dataSnapshot.getValue(String.class));
+                        arr.add(dataSnapshot.getValue(String.class));
+                    }
+
+                }catch (Exception e)
+                {
+                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
 
                 lottieAnimationView.setVisibility(View.INVISIBLE);
                 category_adapter.notifyDataSetChanged();
+                first=arr.get(0);
             }
 
             @Override
@@ -111,14 +124,27 @@ public class Home extends Fragment {
 
             }
         });
+        FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.child(first).getChildren()) {
 
-        top_view_recycler = view.findViewById(R.id.categoryRecycler);
-        top_view_recycler.setHasFixedSize(true);
-        top_view_recycler.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
-        category_adapter = new home_category_adapter(getContext(), arr);
-        top_view_recycler.setAdapter(category_adapter);
+                    home_post_data home_post_data=dataSnapshot.getValue(home_post_data.class);
+                    arrhome.add(home_post_data);
+                }
 
+                lottieAnimationView.setVisibility(View.INVISIBLE);
+                posts_adapter.notifyDataSetChanged();
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
         return view;
     }
 
