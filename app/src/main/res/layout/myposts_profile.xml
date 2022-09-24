@@ -8,58 +8,68 @@
         android:layout_width="match_parent"
         android:layout_height="130sp"
         app:cardCornerRadius="5sp"
-        app:cardElevation="20sp"
+        app:cardElevation="0sp"
         android:layout_margin="5sp"
+        android:backgroundTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-
-            android:id="@+id/mypostsimg"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:src="@mipmap/navheader"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </ImageView>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="30sp"
-            android:layout_gravity="bottom"
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="5sp"
             android:layout_margin="2sp"
-            android:background="@color/gray"
-            android:backgroundTint="#C6000000">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
 
-
-            <TextView
-                android:id="@+id/myposttext"
-                android:layout_width="0dp"
+                android:id="@+id/mypostsimg"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="1272"
-
-                android:textColor="@color/white"
-                android:textSize="12sp"
+                android:src="@mipmap/noimage"
                 app:layout_constraintBottom_toBottomOf="parent"
-
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.99">
+                app:layout_constraintTop_toTopOf="parent">
 
-            </TextView>
+            </ImageView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="30sp"
+                android:layout_gravity="bottom"
+                android:layout_marginRight="0sp"
+                android:layout_marginLeft="0sp"
+                android:layout_marginTop="0sp"
+                android:layout_marginBottom="0sp"
+                android:background="@color/gray"
+                android:backgroundTint="#C6000000">
+
+
+                <TextView
+                    android:id="@+id/myposttext"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="1272"
+
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="1">
+
+                </TextView>
 
 
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+
     </androidx.cardview.widget.CardView>
 
 

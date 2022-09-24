@@ -47,8 +47,8 @@ public class stepthree extends Fragment  {
     LottieAnimationView lottieAnimationView;
     int i=0;
     ToastClass t;
+    String Email;
     String uid;
-
     String semestert,brancht;
     public stepthree() {
         // Required empty public constructor
@@ -78,8 +78,9 @@ public class stepthree extends Fragment  {
 
         sharedpreferences = getContext().getSharedPreferences("user_data", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putString("step", String.valueOf(3));
+
         uid=sharedpreferences.getString("Uid",null);
+        Email=sharedpreferences.getString("Email",null);
         // Spinner Drop down elements
         List<String> branchesa = new ArrayList<String>();
         branchesa.add("Business Services");
@@ -288,7 +289,11 @@ public class stepthree extends Fragment  {
                     next.setVisibility(View.VISIBLE);
 
                     FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Semester").setValue(semestert);
+                    editor.putString("Semester",semestert);
+                    editor.putString("Branch",brancht);
                     FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Branch").setValue(brancht);
+
+
                     FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Steps Completed").setValue(3);
                     FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Total Posts").setValue(0);
 
@@ -300,6 +305,11 @@ public class stepthree extends Fragment  {
                         }
                     }
                     FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Intrests").child(String.valueOf(checkedItems.length+1)).setValue("others");
+
+                    FirebaseDatabase.getInstance().getReference().child("Profile info").child(Email).child("Likes").setValue(0);
+                    FirebaseDatabase.getInstance().getReference().child("Profile info").child(Email).child("Followers").setValue(0);
+                    FirebaseDatabase.getInstance().getReference().child("Profile info").child(Email).child("Following").setValue(0);
+
 
 
                     try {

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,12 +34,17 @@ public class profile_myposts_recycler extends RecyclerView.Adapter<profile_mypos
     @Override
     public void onBindViewHolder(@NonNull profile_myposts_recycler.Holder holder, int position) {
 
-        if(array.get(position).getImageurl()!="null")
+        if(!String.valueOf(array.get(position).getImageurl()).equals("null"))
         {
 
             Picasso.get()
                     .load(String.valueOf(array.get(position).getImageurl()))
                     .into(holder.postimg);
+        }
+        else
+        {
+            Toast.makeText(context, "null", Toast.LENGTH_SHORT).show();
+            //holder.postimg.setBackgroundResource(R.mipmap.noimage);
         }
         if(array.get(position).getPost_text()!="null")
         {

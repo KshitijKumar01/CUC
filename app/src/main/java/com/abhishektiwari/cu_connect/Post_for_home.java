@@ -11,8 +11,10 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.icu.lang.UProperty;
@@ -29,6 +31,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -44,22 +47,33 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 public class Post_for_home extends AppCompatActivity {
 
+
+    SharedPreferences sharedpreferences;
+
     ImageView imagepicker,cancel;
     EditText et_post;
-    int i = 0,count;
+    CardView lottieAnimationView;
+    int i = 0,count,p;
+    int countitem;
     TextView adlinkbtn;
     AppCompatButton bt_submit;
     ImageButton bt_photo, bt_link, bt_setting;
     TextView category_button;
+    String reference;
     String link="null"
             ,text="null"
-            ,image_link="null";
+            ,image_link="null"
+            ,date
+            ,collegeuid;
     CardView linkbox;
     FirebaseStorage storage;
     StorageReference storageReference;
@@ -72,12 +86,16 @@ public class Post_for_home extends AppCompatActivity {
     String[] listItems;
     boolean[] checkedItems;
     List<String> selectedItems;
+    Calendar c;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_for_home);
-
+        sharedpreferences = getSharedPreferences("user_data", Context.MODE_PRIVATE);
+        collegeuid = sharedpreferences.getString("Email", null);
         imageuri=null;
+        lottieAnimationView=findViewById(R.id.uploading);
+        lottieAnimationView.setVisibility(View.GONE);
         linkbox=findViewById(R.id.linkview);
         linkbox.setVisibility(View.GONE);
         cancel=findViewById(R.id.cancel_bth);
@@ -226,6 +244,7 @@ public class Post_for_home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 a=false;
+                lottieAnimationView.setVisibility(View.VISIBLE);
                 text=et_post.getText().toString();
                 for (int i = 0; i < checkedItems.length; i++) {
                     if (checkedItems[i]) {
@@ -234,7 +253,11 @@ public class Post_for_home extends AppCompatActivity {
                 }
                 if(!text.isEmpty() && a==true)
                 {
+                    lottieAnimationView.setVisibility(View.VISIBLE);
                     uploadImage();
+                }
+                else {
+                    lottieAnimationView.setVisibility(View.INVISIBLE);
                 }
             }
         });
@@ -247,11 +270,6 @@ public class Post_for_home extends AppCompatActivity {
         if (imageuri != null) {
             storage = FirebaseStorage.getInstance();
             storageReference = storage.getReference();
-            ProgressDialog progressDialog
-                    = new ProgressDialog(this);
-            progressDialog.setTitle("Uploading...");
-            progressDialog.show();
-
             StorageReference ref = storageReference.child("images"+ UUID.randomUUID().toString());
 
             ref.putFile(imageuri)
@@ -261,7 +279,7 @@ public class Post_for_home extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
                                 {
-                                    progressDialog.dismiss();
+
                                     Toast.makeText(Post_for_home.this, "Image Uploaded!!", Toast.LENGTH_SHORT).show();
 
                                     ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -273,10 +291,10 @@ public class Post_for_home extends AppCompatActivity {
                                     }).addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
+                                            lottieAnimationView.setVisibility(View.INVISIBLE);
                                             Toast.makeText(Post_for_home.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                                         }
                                     });
-
                                 }
                             })
 
@@ -284,12 +302,8 @@ public class Post_for_home extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e)
                         {
-                            progressDialog.dismiss();
-                            Toast
-                                    .makeText(Post_for_home.this,
-                                            "Failed " + e.getMessage(),
-                                            Toast.LENGTH_SHORT)
-                                    .show();
+                            lottieAnimationView.setVisibility(View.INVISIBLE);
+                            Toast.makeText(Post_for_home.this, "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnProgressListener(
@@ -299,7 +313,6 @@ public class Post_for_home extends AppCompatActivity {
                                         UploadTask.TaskSnapshot taskSnapshot)
                                 {
                                     double progress=(100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                                    progressDialog.setMessage("Uploaded "+ (int)progress + "%");
                                 }
                             });
                     }
@@ -326,12 +339,13 @@ public class Post_for_home extends AppCompatActivity {
             link="null";
         }
         else
-        {
-
-        }
-
-        home_post_data home_post_data=new home_post_data(image_link,text,link,0,0);
-        home_post_data_for_profile home_post_data_for_profile=new home_post_data_for_profile(image_link,text,link);
+        {}
+        c = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy  'at' HH:mm:ss ");
+        date = sdf.format(new Date());
+        home_post_data home_post_data=new home_post_data(image_link,text,link,date,collegeuid,0,0);
+        String finalImage_link = image_link;
+        String finalLink = link;
         FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -339,36 +353,46 @@ public class Post_for_home extends AppCompatActivity {
                 FirebaseUser user=auth.getCurrentUser();
                 assert user != null;
                 String uid= user.getUid();
+                countitem=snapshot.child("Total_Posts").getValue(Integer.class);
+                int k=countitem-1;
+                count=snapshot.child("users").child(uid).child("Total Posts").getValue(Integer.class);
+
                 if(user!=null)
                 {
-                    count=snapshot.child("users").child(uid).child("Total Posts").getValue(Integer.class);
+                    reference=String.valueOf(countitem)+uid+":::"+String.valueOf(count + 1);
+                    home_post_data_for_profile home_post_data_for_profile=new home_post_data_for_profile(finalImage_link,text, finalLink,reference);
                     FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Posts").child(String.valueOf(count+1)).setValue(home_post_data_for_profile);
                     FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Total Posts").setValue(count+1);
                     for (int i = 0; i < checkedItems.length; i++) {
-
                         if (checkedItems[i]) {
+                            countitem=0;
+                            p=i;
+                            FirebaseDatabase.getInstance().getReference().child(selectedItems.get(i)).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    FirebaseDatabase.getInstance().getReference().child(selectedItems.get(p)).child(reference).setValue(home_post_data);
+                                }
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
 
-                            FirebaseDatabase.getInstance().getReference().child(selectedItems.get(i)).child(uid+":::"+String.valueOf(count + 1)).setValue(home_post_data);
-
+                                }
+                            });
                         }
                     }
-                    FirebaseDatabase.getInstance().getReference().child("others").child(uid+":::"+String.valueOf(count + 1)).setValue(home_post_data);
+                    FirebaseDatabase.getInstance().getReference().child("others").child(reference).setValue(home_post_data);
+                    FirebaseDatabase.getInstance().getReference().child("Total_Posts").setValue(k);
+                    lottieAnimationView.setVisibility(View.INVISIBLE);
+                    Intent intent=new Intent(Post_for_home.this,MainActivity.class);
+                    startActivity(intent);
                 }
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(Post_for_home.this, "error message", Toast.LENGTH_SHORT).show();
-
+                lottieAnimationView.setVisibility(View.INVISIBLE);
+                Toast.makeText(Post_for_home.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
-
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, link, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, image_link, Toast.LENGTH_SHORT).show();
-
     }
 
     @Override
