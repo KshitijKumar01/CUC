@@ -246,6 +246,7 @@ public class Steptwo extends Fragment {
         FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Whatsapp no").setValue("null");
         FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Phone Verified").setValue("Yes");
         FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Steps Completed").setValue(2);
+        FirebaseDatabase.getInstance().getReference().child("Profile info").child(Email).child("Phone No").setValue(2);
 
         try {
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

@@ -47,7 +47,7 @@
                 <TextView
                     android:id="@+id/postby"
                     android:textStyle="bold"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -87,8 +87,9 @@
             android:id="@+id/postimg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="300sp"
+
             android:background="@color/white"
+            android:minHeight="200sp"
             android:layout_gravity="center"
             android:foregroundGravity="center"
             android:scaleType="fitXY"
@@ -129,7 +130,7 @@
                 android:layout_width="25sp"
                 android:layout_height="25sp"
                 android:layout_gravity="center"
-                android:background="@mipmap/like"
+                android:background="@mipmap/share"
 
                 app:tint="@color/gray" />
 

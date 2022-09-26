@@ -12,6 +12,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -43,17 +45,18 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-public class Home extends Fragment {
+public class Home extends Fragment  {
 
     RecyclerView posts_recycler, top_view_recycler;
     home_posts_recycler posts_adapter;
     home_category_adapter category_adapter;
-    home_post_data home_post_data;
     ImageView addpost;
     String uid;
     String first;
     LottieAnimationView lottieAnimationView;
-
+    ArrayList<home_post_data> arrhome;
+    ArrayList<String> arr;
+    CardView loading;
     public Home() {
         // Required empty public constructor
     }
@@ -70,21 +73,31 @@ public class Home extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        ArrayList<String> arr = new ArrayList<>();
-        ArrayList<home_post_data> arrhome=new ArrayList<>();
+        loading=view.findViewById(R.id.loading);
+        loading.setVisibility(View.VISIBLE);
+        arr = new ArrayList<>();
+        arrhome=new ArrayList<>();
         posts_recycler = view.findViewById(R.id.postsrecycler);
         posts_recycler.setHasFixedSize(true);
         uid= FirebaseAuth.getInstance().getUid();
         posts_recycler.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
         posts_adapter = new home_posts_recycler(getContext(),arrhome);
         posts_recycler.setAdapter(posts_adapter);
+        posts_recycler.getRecycledViewPool().setMaxRecycledViews(0, 0);
         addpost = view.findViewById(R.id.addpost);
         lottieAnimationView=view.findViewById(R.id.loadinganimation);
         lottieAnimationView.setVisibility(View.VISIBLE);
         top_view_recycler = view.findViewById(R.id.categoryRecycler);
         top_view_recycler.setHasFixedSize(true);
         top_view_recycler.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
-        category_adapter = new home_category_adapter(getContext(), arr);
+        category_adapter = new home_category_adapter(getContext(), arr, new home_category_adapter.OnItemClickListener() {
+
+            public void onItemClick(String item) {
+                Toast.makeText(getContext(), item, Toast.LENGTH_LONG).show();
+                updateRecycler(item);
+            }
+        });
+
         top_view_recycler.setAdapter(category_adapter);
 
         addpost.setOnClickListener(new View.OnClickListener() {
@@ -136,6 +149,7 @@ public class Home extends Fragment {
 
                 lottieAnimationView.setVisibility(View.INVISIBLE);
                 posts_adapter.notifyDataSetChanged();
+                loading.setVisibility(View.GONE);
             }
 
             @Override
@@ -148,8 +162,33 @@ public class Home extends Fragment {
         return view;
     }
 
+    private void updateRecycler(String item) {
+        arrhome.clear();
+        loading.setVisibility(View.VISIBLE);
 
 
+        FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.child(item).getChildren()) {
+
+                    home_post_data home_post_data=dataSnapshot.getValue(home_post_data.class);
+                    arrhome.add(home_post_data);
+                }
+
+                loading.setVisibility(View.INVISIBLE);
+                posts_adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                loading.setVisibility(View.INVISIBLE);
+                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
 
 
 }
