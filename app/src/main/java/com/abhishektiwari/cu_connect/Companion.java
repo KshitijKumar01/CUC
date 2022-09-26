@@ -1,14 +1,17 @@
 package com.abhishektiwari.cu_connect;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.RestrictionEntry;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,18 +35,29 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
 public class Companion extends Fragment  {
     RecyclerView recyclerView;
     Dialog dialog,dialog2;
-    String from_state,to_state,from_city,to_city;
-    private ArrayAdapter<CharSequence> stateadapter,districtAdapter,stateadapter_to,districtAdapter_to;
-    String froms,tos;
-    TextView btn_okay, btn_cancel;
+    Calendar c;
+    int count;
+    String from_state="",to_state="",from_city="",to_city="";
+    private ArrayAdapter<CharSequence> stateadapter,districtAdapter;
+    String froms="",tos="",date="",uids="",date_search="";
+    SharedPreferences sharedpreferences;
+
     ImageView  tv_search;
     companion_adapter companion_adapter;
     DatePickerDialog.OnDateSetListener setListener, setListener2;
@@ -51,6 +65,7 @@ public class Companion extends Fragment  {
     private int year, month, day,year2, month2, day2;
     List<String> toa,froma;
     ImageView addrequest;
+    ArrayList<companion_request_post_data> arrcompanion;
 
     public Companion() {
         // Required empty public constructor
@@ -70,12 +85,44 @@ public class Companion extends Fragment  {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_companion, container, false);
         recyclerView=view.findViewById(R.id.companions_recycler);
-        companion_adapter =new companion_adapter(getContext());
+        arrcompanion=new ArrayList<>();
+        companion_adapter =new companion_adapter(getContext(),arrcompanion);
         recyclerView.setAdapter(companion_adapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.child("Companion Requests").getChildren()) {
+
+                    try {
+                        companion_request_post_data cr=dataSnapshot.getValue(companion_request_post_data.class);
+                        arrcompanion.add(cr);
+                    }
+                    catch (Exception e)
+                    {
+                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                companion_adapter.notifyDataSetChanged();
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
         addrequest=view.findViewById(R.id.addcompanionrequest);
 
+        sharedpreferences = getContext().getSharedPreferences("user_data", Context.MODE_PRIVATE);
+        uids = sharedpreferences.getString("Email", null);
 
         addrequest.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -519,7 +566,7 @@ public class Companion extends Fragment  {
                     error.requestFocus();
 
                 } else {
-                    Toast.makeText(getContext(), "Selected State: "+from_state+" to "+to_state+"\nSelected District: "+from_city+" to "+to_city, Toast.LENGTH_LONG).show();
+                    searchnow(from_city,to_city,date_search);
                 }
 
             }
@@ -540,8 +587,8 @@ public class Companion extends Fragment  {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month=month+1;
-                String date=dayOfMonth+"/"+month+"/"+year;
-                DateText2.setText(date);
+                date_search=dayOfMonth+"/"+month+"/"+year;
+                DateText2.setText(date_search);
             }
         };
 
@@ -550,26 +597,104 @@ public class Companion extends Fragment  {
 
     }
 
+    private void searchnow(String from, String to, String date) {
+        arrcompanion.clear();
+        FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.child("Companion Requests").getChildren()) {
+
+                    try {
+                        companion_request_post_data cr=dataSnapshot.getValue(companion_request_post_data.class);
+                        if(cr.getFrom().equals(from) && cr.getTo().equals(to) && cr.getDate().equals(date))
+                        {
+                            arrcompanion.add(cr);
+                        }
+
+                    }
+                    catch (Exception e)
+                    {
+                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                if(arrcompanion.isEmpty())
+                {
+                    recyclerView.setBackground(getResources().getDrawable(R.mipmap.search));
+                }
+                companion_adapter.notifyDataSetChanged();
+                dialog2.dismiss();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+
     void addpostdialog() {
         DisplayMetrics metrics = getResources().getDisplayMetrics();
         int width = metrics.widthPixels;
         int height = metrics.heightPixels;
         dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.companion_posts);
-
-
-
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.getWindow().setLayout((6 * width)/7, (4 * height)/7);
         DateText=dialog.findViewById(R.id.date_picker);
         dialog.show();
         EditText message=dialog.findViewById(R.id.type_text);
         TextView  from=dialog.findViewById(R.id.et_from);
+        TextView  uid=dialog.findViewById(R.id.uid);
         AppCompatButton btn=dialog.findViewById(R.id.bt_submit);
+        uid.setText(uids);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                c = Calendar.getInstance();
+                SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy  'at' HH:mm:ss ");
+                String posted_on = sdf.format(new Date());
                 Toast.makeText(getContext(), message.getText().toString(), Toast.LENGTH_SHORT).show();
+                if(!froms.isEmpty() && !tos.isEmpty() && !date.isEmpty() )
+                {
+                    FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            count=snapshot.child("Total_Posts_Companions").getValue(Integer.class);
+
+                            String reference=null;
+                            try {
+                                reference=  snapshot.child("users").child(FirebaseAuth.getInstance().getUid()).child("Companion Reference").getValue(String.class);
+                                if(!reference.equals(null))
+                                {
+                                    FirebaseDatabase.getInstance().getReference().child("Companion Requests").child(reference).removeValue();
+
+                                }
+                            }
+                            catch (Exception e)
+                            {
+                                Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+
+                            int k=count-1;
+                            uids=snapshot.child("users").child(FirebaseAuth.getInstance().getUid()).child("College UID").getValue(String.class);
+                            companion_request_post_data data=new companion_request_post_data(froms,tos,date,uids,message.getText().toString(),posted_on);
+                            FirebaseDatabase.getInstance().getReference().child("Companion Requests").child(count+uids).setValue(data);
+                            FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getUid()).child("Companion Reference").setValue(count+uids);
+                            FirebaseDatabase.getInstance().getReference().child("Total_Posts_Companions").setValue(k);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
             }
         });
 
@@ -586,9 +711,7 @@ public class Companion extends Fragment  {
                 dialog.setContentView(R.layout.searchable_single_option_dialog);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
-
                 EditText editText=dialog.findViewById(R.id.edittext);
-
                 ListView listView=dialog.findViewById(R.id.listview);
                 ArrayAdapter<String> adapter=new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1,froma);
                 listView.setAdapter(adapter);
@@ -690,7 +813,7 @@ public class Companion extends Fragment  {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month=month+1;
-                String date=dayOfMonth+"/"+month+"/"+year;
+                date=dayOfMonth+"/"+month+"/"+year;
                 DateText.setText(date);
             }
         };

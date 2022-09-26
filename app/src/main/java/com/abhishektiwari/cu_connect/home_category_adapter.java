@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,11 +14,20 @@ import java.util.ArrayList;
 
 public class home_category_adapter extends RecyclerView.Adapter<home_category_adapter.ViewHolder> {
 
+
+
+    public interface OnItemClickListener {
+        void onItemClick(String item);
+    }
+
     //vars
     private ArrayList<String> mCategories = new ArrayList<>();
-    private Context mContext;
+    private Context context;
+    private final OnItemClickListener listener;
 
-    public home_category_adapter(Context context, ArrayList<String> categories){
+    public home_category_adapter(Context context, ArrayList<String> categories,OnItemClickListener listener){
+        this.context=context;
+        this.listener=listener;
         mCategories = categories;
     }
 
@@ -31,6 +41,7 @@ public class home_category_adapter extends RecyclerView.Adapter<home_category_ad
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.category.setText(mCategories.get(position));
+        holder.bind(mCategories.get(position), listener);
 
     }
 
@@ -46,6 +57,15 @@ public class home_category_adapter extends RecyclerView.Adapter<home_category_ad
             super(itemView);
             category = itemView.findViewById(R.id.tv_category);
 
+        }
+
+        public void bind(String s,OnItemClickListener listener) {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onItemClick(s);
+                }
+            });
         }
     }
 }

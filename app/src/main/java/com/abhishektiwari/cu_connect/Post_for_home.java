@@ -187,7 +187,7 @@ public class Post_for_home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                ImagePicker.Companion.with(Post_for_home.this).compress(150)
+                ImagePicker.Companion.with(Post_for_home.this).compress(200)
                         .crop().maxResultSize(1080,1080).start(101);
             }
         });
