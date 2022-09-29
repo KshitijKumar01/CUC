@@ -85,11 +85,14 @@
 
         <ImageView
             android:id="@+id/postimg"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:background="@color/white"
+            android:maxHeight="800sp"
             android:minHeight="200sp"
+            android:maxWidth="700sp"
+            android:minWidth="200sp"
+            android:background="@color/white"
             android:layout_gravity="center"
             android:foregroundGravity="center"
             android:scaleType="fitXY"

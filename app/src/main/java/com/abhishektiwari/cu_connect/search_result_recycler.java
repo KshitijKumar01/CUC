@@ -4,16 +4,21 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 public class search_result_recycler extends RecyclerView.Adapter<search_result_recycler.Holder> {
     Context context;
+    ArrayList<profile_search_data> array;
 
 
-    public search_result_recycler(Context context) {
+    public search_result_recycler(Context context,ArrayList<profile_search_data> array) {
         this.context=context;
+        this.array=array;
     }
 
     @NonNull
@@ -25,17 +30,24 @@ public class search_result_recycler extends RecyclerView.Adapter<search_result_r
 
     @Override
     public void onBindViewHolder(@NonNull search_result_recycler.Holder holder, int position) {
+        holder.uid.setText(array.get(position).getUid());
+        holder.following.setText(String.valueOf(array.get(position).getFollowing()));
+        holder.followers.setText(String.valueOf(array.get(position).getFollowers()));
 
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return array.size();
     }
 
     public class Holder extends RecyclerView.ViewHolder {
+        TextView followers,following,uid;
         public Holder(@NonNull View itemView) {
             super(itemView);
+            followers=itemView.findViewById(R.id.followers);
+            following=itemView.findViewById(R.id.afollowings);
+            uid=itemView.findViewById(R.id.uid);
         }
     }
 }
