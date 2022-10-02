@@ -70,3 +70,4 @@ public class profile_myposts_recycler extends RecyclerView.Adapter<profile_mypos
         }
     }
 }
+

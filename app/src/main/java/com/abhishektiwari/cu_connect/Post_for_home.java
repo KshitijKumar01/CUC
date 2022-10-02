@@ -186,8 +186,7 @@ public class Post_for_home extends AppCompatActivity {
         bt_photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                ImagePicker.Companion.with(Post_for_home.this).compress(200)
+                ImagePicker.Companion.with(Post_for_home.this).compress(300)
                         .crop().maxResultSize(1080,1080).start(101);
             }
         });
@@ -380,6 +379,7 @@ public class Post_for_home extends AppCompatActivity {
                         }
                     }
                     FirebaseDatabase.getInstance().getReference().child("others").child(reference).setValue(home_post_data);
+                    FirebaseDatabase.getInstance().getReference().child("Profile_Search_Post").child(collegeuid).child(String.valueOf(countitem)).setValue(home_post_data);
                     FirebaseDatabase.getInstance().getReference().child("Total_Posts").setValue(k);
                     lottieAnimationView.setVisibility(View.INVISIBLE);
                     Intent intent=new Intent(Post_for_home.this,MainActivity.class);
