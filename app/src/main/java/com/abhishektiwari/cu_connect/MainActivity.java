@@ -21,7 +21,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener{
 
     //bottom nevigation
     CardView profilebg,companionbg,homebg,searchbg,settingbg;
@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        System.out.println("Hello world");
 
         //Bottomnevigation
         profilebg=findViewById(R.id.profileitem);
@@ -53,43 +52,20 @@ public class MainActivity extends AppCompatActivity {
         toolbar=findViewById(R.id.drawer_toolbar);
         drawerLayout=findViewById(R.id.drawer);
         navigationView=findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.bringToFront();
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 drawerLayout.openDrawer(GravityCompat.START);
+
             }
-        });
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int id=item.getItemId();
-                drawerLayout.closeDrawer(GravityCompat.START);
-                switch (id)
-                {
-                    case R.id.about_app:
 
-                        break;
-                    case R.id.connect_to_us:
-
-                        break;
-
-                    case R.id.our_more_apps:
-
-                        break;
-                    case R.id.privacy_policy:
-
-                        break;
-
-                    default:
-                        return true;
-
-
-                }
-                return true;
-            }
         });
 
     }
+
 
 
 
@@ -191,5 +167,39 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
         }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id=item.getItemId();
+        navigationView.setSelected(true);
+        navigationView.setCheckedItem(id);
+        //Closing drawer on item click
+       // drawerLayout.closeDrawers();
+
+        if(id==R.id.about_app)
+        {
+            getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_right,R.anim.slide_out_right).replace(R.id.maincontainer,new About_app()).commit();
+
+        }
+        if(id==R.id.privacy_policy)
+        {
+             getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_right,R.anim.slide_out_right).replace(R.id.maincontainer,new Privacy_policy()).commit();
+
+        }
+        if(id==R.id.connect_to_us)
+        {
+           getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_right,R.anim.slide_out_right).replace(R.id.maincontainer,new Connect_to_us()).commit();
+
+        }
+        if(id==R.id.our_more_apps)
+        {
+            getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_right,R.anim.slide_out_right).replace(R.id.maincontainer,new Our_more_apps()).commit();
+
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+
+
+        return true;
     }
 }

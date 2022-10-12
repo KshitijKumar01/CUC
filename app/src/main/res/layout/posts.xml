@@ -23,14 +23,28 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="50sp"
-                app:cardCornerRadius="40sp"
-                android:layout_height="50sp">
-                <ImageView
-                    android:layout_width="50sp"
-                    android:layout_height="50sp"
-                    android:src="@mipmap/logo" >
+                android:elevation="0dp"
+                app:cardCornerRadius="60sp"
 
-                </ImageView>
+                android:backgroundTint="@color/yellow"
+                android:layout_height="50sp">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    app:cardCornerRadius="60sp"
+                    android:layout_margin="2sp"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_margin="3sp"
+                        android:id="@+id/profileimg"
+                        android:scaleType="centerInside"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@mipmap/logo" >
+
+                    </ImageView>
+                </androidx.cardview.widget.CardView>
+
+
             </androidx.cardview.widget.CardView>
 
 
@@ -113,6 +127,7 @@
                 android:background="@mipmap/notfollowing" />
 
             <ImageButton
+                android:id="@+id/post_save"
                 android:layout_gravity="center"
                 android:layout_width="25sp"
                 android:layout_marginLeft="20sp"
@@ -129,20 +144,22 @@
                 android:layout_weight="1" />
 
             <ImageButton
-                android:id="@+id/postlike"
-                android:layout_width="25sp"
-                android:layout_height="25sp"
+
+                android:id="@+id/postshare"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_gravity="center"
                 android:background="@mipmap/share"
 
                 app:tint="@color/gray" />
 
             <TextView
+                android:visibility="invisible"
                 android:id="@+id/postliketext"
-                android:layout_width="wrap_content"
+                android:layout_width="17dp"
                 android:layout_height="?attr/actionBarSize"
-                android:layout_marginRight="20sp"
                 android:layout_marginLeft="5sp"
+                android:layout_marginRight="20sp"
                 android:gravity="center_vertical"
                 android:text="12"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"

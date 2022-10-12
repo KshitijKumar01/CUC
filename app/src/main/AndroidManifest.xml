@@ -20,37 +20,36 @@
         android:theme="@style/Theme.Cu_Connect"
         tools:targetApi="31">
         <activity
-            android:name=".Post_for_home"
+            android:name=".Cuims"
             android:exported="true"
             android:screenOrientation="portrait">
 
         </activity>
 
-
+        <activity
+            android:name=".Post_for_home"
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".AdActivity"
             android:exported="true"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name=".LoginSignup"
-            android:exported="true"
-            android:screenOrientation="portrait">
-
-
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:screenOrientation="portrait">
-
-
-
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".LoginSignup"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+
         </activity> <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

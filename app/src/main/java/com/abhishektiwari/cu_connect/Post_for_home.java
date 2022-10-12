@@ -48,10 +48,12 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 public class Post_for_home extends AppCompatActivity {
@@ -64,6 +66,7 @@ public class Post_for_home extends AppCompatActivity {
     CardView lottieAnimationView;
     int i = 0,count,p;
     int countitem;
+    ArrayList<String  > cate;
     TextView adlinkbtn;
     AppCompatButton bt_submit;
     ImageButton bt_photo, bt_link, bt_setting;
@@ -109,6 +112,8 @@ public class Post_for_home extends AppCompatActivity {
         cameraPermission = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
         bt_submit.setEnabled(true);
+        cate=new ArrayList<>();
+
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,9 +146,13 @@ public class Post_for_home extends AppCompatActivity {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
+                        cate.clear();
+
                         for (int i = 0; i < checkedItems.length; i++) {
                             if (checkedItems[i]) {
                                 category_button.setText(category_button.getText() + selectedItems.get(i) + "  ");
+                                cate.add(selectedItems.get(i));
                             }
                         }
                         if (selectedItems.size() > 0) {
@@ -156,9 +165,13 @@ public class Post_for_home extends AppCompatActivity {
                 builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        cate=new ArrayList<>();
+                        cate.clear();
                         for (int i = 0; i < checkedItems.length; i++) {
                             if (checkedItems[i]) {
                                 category_button.setText(category_button.getText() + selectedItems.get(i) + "  ");
+                                cate.add(selectedItems.get(i));
+
                             }
                         }
                         if (selectedItems.size() > 0) {
@@ -171,6 +184,7 @@ public class Post_for_home extends AppCompatActivity {
                 builder.setNeutralButton("CLEAR ALL", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        cate.clear();
                         for (int i = 0; i < checkedItems.length; i++) {
                             checkedItems[i] = false;
                         }
@@ -265,7 +279,7 @@ public class Post_for_home extends AppCompatActivity {
     }
     private void uploadImage()
     {
-        Toast.makeText(this, "In upload image", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Uploading Image", Toast.LENGTH_SHORT).show();
         if (imageuri != null) {
             storage = FirebaseStorage.getInstance();
             storageReference = storage.getReference();
@@ -318,7 +332,6 @@ public class Post_for_home extends AppCompatActivity {
         else
         {
             savepost(text,link,image_link);
-            Toast.makeText(this, "image uri is null", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -342,7 +355,20 @@ public class Post_for_home extends AppCompatActivity {
         c = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy  'at' HH:mm:ss ");
         date = sdf.format(new Date());
-        home_post_data home_post_data=new home_post_data(image_link,text,link,date,collegeuid,0,0);
+        final int[] x = new int[1];
+        FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                x[0] =snapshot.child("users").child(FirebaseAuth.getInstance().getUid()).child("Element").getValue(Integer.class);
+                showelement(x[0]);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        home_post_data home_post_data=new home_post_data(image_link,text,link,date,collegeuid,0,0, x[0]);
         String finalImage_link = image_link;
         String finalLink = link;
         FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
@@ -362,24 +388,14 @@ public class Post_for_home extends AppCompatActivity {
                     home_post_data_for_profile home_post_data_for_profile=new home_post_data_for_profile(finalImage_link,text, finalLink,reference);
                     FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Posts").child(String.valueOf(count+1)).setValue(home_post_data_for_profile);
                     FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Total Posts").setValue(count+1);
-                    for (int i = 0; i < checkedItems.length; i++) {
-                        if (checkedItems[i]) {
-                            countitem=0;
-                            p=i;
-                            FirebaseDatabase.getInstance().getReference().child(selectedItems.get(i)).addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    FirebaseDatabase.getInstance().getReference().child(selectedItems.get(p)).child(reference).setValue(home_post_data);
-                                }
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-
-                                }
-                            });
-                        }
+                    for (int i = 0; i <cate.size(); i++) {
+                        countitem=0;
+                        Toast.makeText(Post_for_home.this, cate.get(i), Toast.LENGTH_SHORT).show();
+                        p=i;
+                        FirebaseDatabase.getInstance().getReference().child(cate.get(p)).child(reference).setValue(home_post_data);
                     }
                     FirebaseDatabase.getInstance().getReference().child("others").child(reference).setValue(home_post_data);
-                    FirebaseDatabase.getInstance().getReference().child("Profile_Search_Post").child(collegeuid).child(String.valueOf(countitem)).setValue(home_post_data);
+                    FirebaseDatabase.getInstance().getReference().child("Profile_Search_Post").child(collegeuid).child(String.valueOf(reference)).setValue(home_post_data);
                     FirebaseDatabase.getInstance().getReference().child("Total_Posts").setValue(k);
                     lottieAnimationView.setVisibility(View.INVISIBLE);
                     Intent intent=new Intent(Post_for_home.this,MainActivity.class);
@@ -393,6 +409,29 @@ public class Post_for_home extends AppCompatActivity {
                 Toast.makeText(Post_for_home.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void showelement(int x) {
+        if(x==0)
+        {
+            Toast.makeText(this, "This post is assigned as heat", Toast.LENGTH_SHORT).show();
+        }
+        else if(x==1)
+        {
+            Toast.makeText(this, "This post is assigned as water", Toast.LENGTH_SHORT).show();
+        }
+        else if(x==2)
+        {
+            Toast.makeText(this, "This post is assigned as air", Toast.LENGTH_SHORT).show();
+        }
+        else if(x==3)
+        {
+            Toast.makeText(this, "This post is assigned as Earth", Toast.LENGTH_SHORT).show();
+        }
+        else if(x==4)
+        {
+            Toast.makeText(this, "This post is assigned as Spirit", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

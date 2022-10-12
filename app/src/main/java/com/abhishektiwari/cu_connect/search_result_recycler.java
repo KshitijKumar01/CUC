@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -48,6 +50,13 @@ public class search_result_recycler extends RecyclerView.Adapter<search_result_r
             followers=itemView.findViewById(R.id.followers);
             following=itemView.findViewById(R.id.afollowings);
             uid=itemView.findViewById(R.id.uid);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FragmentManager fragmentManager=((AppCompatActivity)context).getSupportFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.maincontainer,new Search_userposts()).commit();
+                }
+            });
         }
     }
 }

@@ -2,16 +2,18 @@ package com.abhishektiwari.cu_connect;
 
 public class companion_request_post_data {
     String from,to,date,uid,text_message,posted_on;
+    int element;
 
     public companion_request_post_data()
     {}
-    public companion_request_post_data(String from, String to, String date, String uid, String text_message, String posted_on) {
+    public companion_request_post_data(String from, String to, String date, String uid, String text_message, String posted_on,int element) {
         this.from = from;
         this.to = to;
         this.date = date;
         this.uid = uid;
         this.text_message = text_message;
         this.posted_on = posted_on;
+        this.element=element;
     }
 
     public String getFrom() {
@@ -61,4 +63,8 @@ public class companion_request_post_data {
     public void setPosted_on(String posted_on) {
         this.posted_on = posted_on;
     }
+
+    public int getElement() {return element;}
+
+    public void setElement(int element) {this.element = element;}
 }

@@ -13,6 +13,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,6 +47,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 
 public class Companion extends Fragment  {
@@ -54,16 +56,15 @@ public class Companion extends Fragment  {
     Calendar c;
     int count;
     String from_state="",to_state="",from_city="",to_city="";
-    private ArrayAdapter<CharSequence> stateadapter,districtAdapter;
+    private ArrayAdapter<CharSequence> stateadapter,districtAdapter,fromadp,toadp;
     String froms="",tos="",date="",uids="",date_search="";
     SharedPreferences sharedpreferences;
-
+    CardView loading;
     ImageView  tv_search;
     companion_adapter companion_adapter;
     DatePickerDialog.OnDateSetListener setListener, setListener2;
     private TextView DateText,DateText2;
     private int year, month, day,year2, month2, day2;
-    List<String> toa,froma;
     ImageView addrequest;
     ArrayList<companion_request_post_data> arrcompanion;
 
@@ -90,6 +91,10 @@ public class Companion extends Fragment  {
         recyclerView.setAdapter(companion_adapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        loading=view.findViewById(R.id.loading);
+        loading.setVisibility(View.VISIBLE);
+
         FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
@@ -107,6 +112,7 @@ public class Companion extends Fragment  {
 
                 }
                 companion_adapter.notifyDataSetChanged();
+                loading.setVisibility(View.GONE);
 
 
             }
@@ -599,6 +605,8 @@ public class Companion extends Fragment  {
 
     private void searchnow(String from, String to, String date) {
         arrcompanion.clear();
+        dialog2.dismiss();
+        loading.setVisibility(View.VISIBLE);
         FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
@@ -624,7 +632,8 @@ public class Companion extends Fragment  {
                     recyclerView.setBackground(getResources().getDrawable(R.mipmap.search));
                 }
                 companion_adapter.notifyDataSetChanged();
-                dialog2.dismiss();
+                loading.setVisibility(View.GONE);
+
 
             }
 
@@ -682,11 +691,25 @@ public class Companion extends Fragment  {
                             }
 
                             int k=count-1;
+                            final int[] x = new int[1];
+                            FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    x[0] =snapshot.child("users").child(FirebaseAuth.getInstance().getUid()).child("Element").getValue(Integer.class);
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                    x[0]=3;
+                                }
+                            });
                             uids=snapshot.child("users").child(FirebaseAuth.getInstance().getUid()).child("College UID").getValue(String.class);
-                            companion_request_post_data data=new companion_request_post_data(froms,tos,date,uids,message.getText().toString(),posted_on);
+                            companion_request_post_data data=new companion_request_post_data(froms,tos,date,uids,message.getText().toString(),posted_on,x[0]);
                             FirebaseDatabase.getInstance().getReference().child("Companion Requests").child(count+uids).setValue(data);
                             FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getUid()).child("Companion Reference").setValue(count+uids);
                             FirebaseDatabase.getInstance().getReference().child("Total_Posts_Companions").setValue(k);
+                            btn.setEnabled(false);
                         }
 
                         @Override
@@ -701,20 +724,14 @@ public class Companion extends Fragment  {
         from.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                froma = new ArrayList<String>();
-                froma.add("Business Services");
-                froma.add("Computers");
-                froma.add("Education");
-                froma.add("Personal");
-                froma.add("Travel");
                 dialog=new Dialog(getContext());
                 dialog.setContentView(R.layout.searchable_single_option_dialog);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
+                fromadp=ArrayAdapter.createFromResource(getContext(),R.array.all_cities,android.R.layout.simple_list_item_1);
                 EditText editText=dialog.findViewById(R.id.edittext);
                 ListView listView=dialog.findViewById(R.id.listview);
-                ArrayAdapter<String> adapter=new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1,froma);
-                listView.setAdapter(adapter);
+                listView.setAdapter(fromadp);
                 editText.addTextChangedListener(new TextWatcher() {
                     @Override
                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -724,7 +741,7 @@ public class Companion extends Fragment  {
                     @Override
                     public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                        adapter.getFilter().filter(s);
+                        fromadp.getFilter().filter(s);
                     }
 
                     @Override
@@ -736,8 +753,8 @@ public class Companion extends Fragment  {
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        from.setText(adapter.getItem(position));
-                        froms=adapter.getItem(position);
+                        from.setText(fromadp.getItem(position));
+                        froms=(fromadp.getItem(position)).toString();
                         dialog.dismiss();
 
                     }
@@ -750,12 +767,6 @@ public class Companion extends Fragment  {
         to.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toa = new ArrayList<String>();
-                toa.add("Business Services");
-                toa.add("Computers");
-                toa.add("Education");
-                toa.add("Personal");
-                toa.add("Travel");
                 dialog=new Dialog(getContext());
                 dialog.setContentView(R.layout.searchable_single_option_dialog);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -764,8 +775,9 @@ public class Companion extends Fragment  {
                 EditText editText=dialog.findViewById(R.id.edittext);
 
                 ListView listView=dialog.findViewById(R.id.listview);
-                ArrayAdapter<String> adapter=new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1,toa);
-                listView.setAdapter(adapter);
+                toadp=ArrayAdapter.createFromResource(getContext(),R.array.all_cities,android.R.layout.simple_list_item_1);
+
+                listView.setAdapter(toadp);
                 editText.addTextChangedListener(new TextWatcher() {
                     @Override
                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -775,7 +787,7 @@ public class Companion extends Fragment  {
                     @Override
                     public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                        adapter.getFilter().filter(s);
+                        toadp.getFilter().filter(s);
                     }
 
                     @Override
@@ -787,8 +799,8 @@ public class Companion extends Fragment  {
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        to.setText(adapter.getItem(position));
-                        tos=adapter.getItem(position);
+                        to.setText(toadp.getItem(position));
+                        tos=(toadp.getItem(position)).toString();
                         dialog.dismiss();
 
                     }

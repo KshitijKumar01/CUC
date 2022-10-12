@@ -36,6 +36,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class stepthree extends Fragment  {
 
@@ -306,9 +307,15 @@ public class stepthree extends Fragment  {
                     }
                     FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Intrests").child(String.valueOf(checkedItems.length+1)).setValue("others");
 
+                    Random rm=new Random();
+                    int x=rm.nextInt(5);
+                    FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("Element").setValue(x);
+
+
                     FirebaseDatabase.getInstance().getReference().child("Profile info").child(Email).child("Likes").setValue(0);
                     FirebaseDatabase.getInstance().getReference().child("Profile info").child(Email).child("Followers").setValue(0);
                     FirebaseDatabase.getInstance().getReference().child("Profile info").child(Email).child("Following").setValue(0);
+
 
 
 
