@@ -23,15 +23,31 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="50sp"
-                app:cardCornerRadius="40sp"
-                android:layout_height="50sp">
-                <ImageView
-                    android:layout_width="50sp"
-                    android:layout_height="50sp"
-                    android:src="@mipmap/logo" >
+                android:elevation="0dp"
+                app:cardCornerRadius="60sp"
 
-                </ImageView>
+                android:backgroundTint="@color/yellow"
+                android:layout_height="50sp">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    app:cardCornerRadius="60sp"
+                    android:layout_margin="2sp"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_margin="3sp"
+                        android:id="@+id/profileimg"
+                        android:scaleType="centerInside"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@mipmap/logo" >
+
+                    </ImageView>
+                </androidx.cardview.widget.CardView>
+
+
             </androidx.cardview.widget.CardView>
+
+
 
 
 

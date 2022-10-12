@@ -27,11 +27,11 @@ import java.util.ArrayList;
 public class Search extends Fragment {
     RecyclerView recyclerView;
     search_result_recycler searchadapter;
-
     ArrayList<profile_search_data> array;
     String uid="";
     Integer following=0,followers=0;
     long phoneno=0;
+    public  static  String search_uid="";
     public Search() {
         // Required empty public constructor
     }
@@ -104,6 +104,7 @@ public class Search extends Fragment {
                                 Toast.makeText(getContext(), "Snapshot", Toast.LENGTH_SHORT).show();
                                 if(snapshot.child(Searchtext).exists()) {
                                     array.clear();
+                                    search_uid=Searchtext;
                                     Toast.makeText(getContext(), "has Child", Toast.LENGTH_SHORT).show();
                                     FirebaseDatabase.getInstance().getReference().child("Profile info").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
                                         @Override

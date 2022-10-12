@@ -93,8 +93,13 @@ public class Home extends Fragment  {
         category_adapter = new home_category_adapter(getContext(), arr, new home_category_adapter.OnItemClickListener() {
 
             public void onItemClick(String item) {
-                Toast.makeText(getContext(), item, Toast.LENGTH_LONG).show();
-                updateRecycler(item);
+                try {
+                    updateRecycler(item);
+                }
+                catch (Exception e)
+                {
+
+                }
             }
         });
 
@@ -128,6 +133,7 @@ public class Home extends Fragment  {
                 first=arr.get(0);
             }
 
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -167,27 +173,35 @@ public class Home extends Fragment  {
         loading.setVisibility(View.VISIBLE);
 
 
-        FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
-            @SuppressLint("NotifyDataSetChanged")
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.child(item).getChildren()) {
+        try {
+            {
+                FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
+                    @SuppressLint("NotifyDataSetChanged")
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot dataSnapshot : snapshot.child(item).getChildren()) {
 
-                    home_post_data home_post_data=dataSnapshot.getValue(home_post_data.class);
-                    arrhome.add(home_post_data);
-                }
+                            home_post_data home_post_data=dataSnapshot.getValue(home_post_data.class);
+                            arrhome.add(home_post_data);
+                        }
 
-                loading.setVisibility(View.INVISIBLE);
-                posts_adapter.notifyDataSetChanged();
+                        loading.setVisibility(View.INVISIBLE);
+                        posts_adapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        loading.setVisibility(View.INVISIBLE);
+                        Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
             }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                loading.setVisibility(View.INVISIBLE);
-                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-
-            }
-        });
+        }
+        catch (Exception e)
+        {}
     }
 
 

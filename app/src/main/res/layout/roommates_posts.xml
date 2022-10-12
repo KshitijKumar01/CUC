@@ -81,6 +81,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:text="Shubham Mahalkar"
+                        android:id="@+id/uidroom"
                         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                         android:textColor="@color/redmain"
                         android:textStyle="bold" />

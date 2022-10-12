@@ -43,7 +43,7 @@ public class profile_myposts_recycler extends RecyclerView.Adapter<profile_mypos
         }
         else
         {
-            Toast.makeText(context, "null", Toast.LENGTH_SHORT).show();
+
             //holder.postimg.setBackgroundResource(R.mipmap.noimage);
         }
         if(array.get(position).getPost_text()!="null")

@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -23,9 +25,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Profile extends Fragment {
 
+    ImageView savedposts,profile;
     RecyclerView posts_recycler;
     profile_myposts_recycler posts_adapter;
     ArrayList<profile_myposts_data> dataarray;
@@ -55,9 +59,21 @@ public class Profile extends Fragment {
         followingst=view.findViewById(R.id.following);
         followerst=view.findViewById(R.id.followers);
         likest=view.findViewById(R.id.likes);
+        profile=view.findViewById(R.id.item_profile_picture);
+
         posts_recycler=view.findViewById(R.id.mypostsrecycler);
         uploading=view.findViewById(R.id.uploading);
         uploading.setVisibility(View.VISIBLE);
+        posts_recycler.getRecycledViewPool().setMaxRecycledViews(0, 0);
+
+        savedposts=view.findViewById(R.id.saved_images);
+        savedposts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_up,R.anim.slide_down).replace(R.id.maincontainer,new saved_posts()).commit();
+
+            }
+        });
 
         posts_recycler.setHasFixedSize(true);
         posts_recycler.setLayoutManager(new GridLayoutManager(getContext(),2));
@@ -97,6 +113,9 @@ public class Profile extends Fragment {
                 likes=snapshot.child("Profile info").child(uid).child("Likes").getValue(Integer.class);
                 followers=snapshot.child("Profile info").child(uid).child("Followers").getValue(Integer.class);
                 following=snapshot.child("Profile info").child(uid).child("Following").getValue(Integer.class);
+                int x;
+                x=snapshot.child("users").child(FirebaseAuth.getInstance().getUid()).child("Element").getValue(Integer.class);
+                showelement(x);
                 SetProfileText(branch,semester,uid,likes,followers,following);
             }
 
@@ -114,4 +133,31 @@ public class Profile extends Fragment {
         followerst.setText(String.valueOf(followers));
         followingst.setText(String.valueOf(following));
     }
+    private void showelement(int x) {
+        if(x==0)
+        {
+           profile.setImageResource(R.mipmap.fire);
+        }
+        else if(x==1)
+        {
+            profile.setImageResource(R.mipmap.water);
+        }
+        else if(x==2)
+        {
+            profile.setImageResource(R.mipmap.air);
+        }
+        else if(x==3)
+        {
+            profile.setImageResource(R.mipmap.earth);
+        }
+        else if(x==4)
+        {
+            profile.setImageResource(R.mipmap.spirit);
+        }
+        else
+        {
+            profile.setImageResource(R.mipmap.profile);
+        }
+    }
+
 }
